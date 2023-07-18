@@ -3,27 +3,68 @@ import Input from '@/components/ui/forms/input';
 import Button from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'next-i18next';
-import { couponAtom } from '@/store/checkout';
+import {
+  PaymentMethodName,
+  couponAtom,
+  discountAtom,
+  paymentGatewayAtom,
+  verifiedResponseAtom,
+} from '@/store/checkout';
 import { useAtom } from 'jotai';
 import classNames from 'classnames';
 import { useVerifyCoupon } from '@/framework/settings';
-
+import Api from '@/config/WooCommerce';
+import usePrice from '@/lib/use-price';
+import {
+  calculatePaidTotal,
+  calculateTotal,
+} from '@/store/quick-cart/cart.utils';
+import { useCart } from '@/store/quick-cart/cart.context';
+import { caluclateDiscount } from '@/store/calculatediscount';
 type FormTypes = {
   code: string;
 };
 
 const Coupon = ({ theme }: { theme?: 'dark' }) => {
   const { t } = useTranslation('common');
-  const [hasCoupon, setHasCoupon] = useState(false);
-  const [coupon, applyCoupon] = useAtom(couponAtom);
+  const { items, isEmpty: isEmptyCart } = useCart();
+  const [discount] = useAtom(discountAtom);
 
+  const [hasCoupon, setHasCoupon] = useState(false);
+  const available_items = items?.filter(
+    (item) => !verifiedResponse?.unavailable_products?.includes(item.id)
+  );
+
+  const [coupon, applyCoupon] = useAtom(couponAtom);
+  const [verifiedResponse] = useAtom(verifiedResponseAtom);
+  const base_amount = calculateTotal(available_items);
+  const [gateway] = useAtom<PaymentMethodName>(paymentGatewayAtom);
+
+  const totalPrice = verifiedResponse
+    ? calculatePaidTotal(
+        {
+          totalAmount: base_amount,
+          tax: verifiedResponse?.total_tax,
+          shipping_charge: verifiedResponse?.shipping_charge,
+        },
+        Number(discount)
+      )
+    : 0;
+  const { price: total } = usePrice(
+    verifiedResponse && {
+      amount: totalPrice <= 0 ? 0 : totalPrice,
+    }
+  );
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<FormTypes>();
-  const { mutate: verifyCoupon, isLoading: loading, formError } = useVerifyCoupon();
+  const {
+    mutate: verifyCoupon,
+    isLoading: loading,
+    formError,
+  } = useVerifyCoupon();
   if (!hasCoupon && !coupon) {
     return (
       <p
@@ -35,28 +76,47 @@ const Coupon = ({ theme }: { theme?: 'dark' }) => {
       </p>
     );
   }
-  function onSubmit(code: FormTypes) {
-    // verifyCoupon(
-    //   {
-    //     code,
-    //   }
-    //   // {
-    //   //   onSuccess: (data) => {
-    //   //     if (data.is_valid) {
-    //   //       applyCoupon(data.coupon);
-    //   //       setHasCoupon(false);
-    //   //     } else {
-    //   //       setError('code', {
-    //   //         type: 'manual',
-    //   //         message: 'error-invalid-coupon',
-    //   //       });
-    //   //     }
-    //   //   },
-    //   // }
-    // );
-    verifyCoupon({
-      code: code?.code
-    });
+  async function onSubmit(code: FormTypes) {
+    const res = await Api.get(`coupons?code=${code?.code}`);
+    if (res.data && res.data.length > 0) {
+      const c = res.data[0];
+      calculateCouponDisc(c);
+    }
+  }
+
+  function percentage(percent: any, total: any) {
+    return parseFloat(((percent / 100) * total).toFixed(2));
+  }
+  function calculateCouponDisc(coupon: any) {
+    const sub_total = total.replace('₹', '').replace(',', '');
+    const cartData = {
+      subtotal: parseFloat(sub_total),
+      discountData: {
+        type: coupon.discount_type,
+        amount: parseFloat(coupon.amount),
+      },
+      items: available_items.length,
+      prepaymentDiscount:
+        gateway === 'RAZORPAY' ? percentage(5, base_amount) : 0,
+    };
+
+    const disc = caluclateDiscount(cartData);
+    console.log(disc);
+    const couponFormat = {
+      id: 9,
+      description: coupon.code,
+
+      type: coupon.discount_type,
+      amount: disc?.Discount,
+      active_from: '2021-03-28T05:46:42.000Z',
+      expire_at: '2024-06-23T05:46:42.000Z',
+      created_at: '2021-03-28T05:48:16.000000Z',
+      updated_at: '2021-08-19T03:58:34.000000Z',
+      deleted_at: null,
+      is_valid: true,
+    };
+    //@ts-ignore
+    applyCoupon(couponFormat);
   }
 
   return (

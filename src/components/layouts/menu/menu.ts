@@ -1,11 +1,6 @@
 import Categories from 'Categories.json';
 export const healing_services = [
   {
-    id: 1,
-    name: 'Healing Services',
-    slug: 'healing-services',
-  },
-  {
     id: 2,
     name: 'Integral Healing',
     slug: '/integral-healing-service',
@@ -56,7 +51,7 @@ export const healing_services = [
     slug: '/astrology-consultation',
   },
 ];
-export const shop = Categories.map((c) => ({
+export const shop = Categories.filter((t) => t.slug !== 'shop').map((c) => ({
   id: Math.floor(Math.random()),
   name: c.name,
   slug: `/product-category/` + c.slug,

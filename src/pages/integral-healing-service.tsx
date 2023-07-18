@@ -10,6 +10,7 @@ import Image from 'next/image';
 import StillHaveQuery from '@/components/healingServices/Query';
 import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import SeoByRankMath from '@/components/products/SEO';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 function IntegralHealing(props: any) {
   const { goldProduct, silverProduct, broonzeProduct } = props;
   const { openModal } = useModalAction();
@@ -108,7 +109,7 @@ function IntegralHealing(props: any) {
         </div>
       </div>
       <div className="mx-auto   w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
-        <div className="my-8  ">
+        <div id="pricing" className="my-8  ">
           <PricingOptions
             allProducts={[{ goldProduct, silverProduct, broonzeProduct }]}
           />
@@ -194,17 +195,19 @@ function IntegralHealing(props: any) {
             <p className="text-[30px] font-semibold">
               Enroll now and evolve spiritually
             </p>
-            <button
-              style={{
-                backgroundImage: `linear-gradient(90deg, #0A2D4D 0%, #166AB4 100%)`,
-                backgroundColor: 'transparent',
-                fontWeight: '500',
-                padding: `20px 160px  `,
-              }}
-              className="my-4 rounded-md text-[28px] text-white"
-            >
-              Buy Now
-            </button>
+            <SmoothScrollLink to="pricing">
+              <button
+                style={{
+                  backgroundImage: `linear-gradient(90deg, #0A2D4D 0%, #166AB4 100%)`,
+                  backgroundColor: 'transparent',
+                  fontWeight: '500',
+                  padding: `20px 160px  `,
+                }}
+                className="my-4 rounded-md text-[28px] text-white"
+              >
+                Buy Now
+              </button>
+            </SmoothScrollLink>
           </div>
         </section>
       </div>

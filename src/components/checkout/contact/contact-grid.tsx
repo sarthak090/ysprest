@@ -6,6 +6,9 @@ import { PlusIcon } from '@/components/icons/plus-icon';
 import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
 import PhoneInput from '@/components/ui/forms/phone-input';
+import Button from '@/components/ui/button';
+import PhoneNumberForm from '@/components/otp/phone-number-form';
+import { toast } from 'react-toastify';
 
 interface ContactProps {
   contact: string | undefined | null;
@@ -66,10 +69,56 @@ const ContactGrid = ({
         <PhoneInput
           country="in"
           value={contactNumber}
-          disabled={true}
+          disabled={false}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />
+      </div>
+    </div>
+  );
+};
+
+export const ContactGridGuest = ({
+  contact,
+  label,
+  count,
+  className,
+  gridClassName,
+}: ContactProps) => {
+  const [contactNumber, setContactNumber] = useAtom(customerContactAtom);
+  const { openModal } = useModalAction();
+  const { t } = useTranslation('common');
+
+  useEffect(() => {
+    if (contact) {
+      setContactNumber(contact);
+      return;
+    }
+    setContactNumber('');
+  }, [contact, setContactNumber]);
+  const addContact = ({ phone_number }: { phone_number: string }) => {
+    setContactNumber(phone_number);
+    toast.success('Phone number added');
+  };
+  return (
+    <div className={className}>
+      <div
+        className={classNames('mb-5 flex items-center justify-between', {
+          'md:mb-8': count,
+        })}
+      >
+        <div className="flex items-center space-x-3 rtl:space-x-reverse md:space-x-4">
+          {count && (
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-base text-light lg:text-xl">
+              {count}
+            </span>
+          )}
+          <p className="text-lg capitalize text-heading lg:text-xl">{label}</p>
+        </div>
+      </div>
+
+      <div className={classNames('w-full', gridClassName)}>
+        <PhoneNumberForm onSubmit={addContact} phoneNumber={contactNumber} />
       </div>
     </div>
   );

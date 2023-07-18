@@ -7,6 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-lama-fera-healing`;
@@ -103,9 +104,11 @@ function Thewaveoffortunelifelineactivation(props: any) {
             </div>
           </div>
           <div className="my-8 flex gap-4">
-            <button className="rounded-full bg-[#e8c250] px-12 py-4 text-[18px] font-semibold text-black  outline-none">
-              <a href="#buynow">Buy Now !</a>
-            </button>
+            <SmoothScrollLink to="buynow">
+              <button className="rounded-full bg-[#e8c250] px-12 py-4 text-[18px] font-semibold text-black  outline-none">
+                Buy Now !
+              </button>
+            </SmoothScrollLink>
           </div>
         </section>
       </section>

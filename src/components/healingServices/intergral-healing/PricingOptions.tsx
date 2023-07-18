@@ -42,7 +42,7 @@ const PricingOptions = (props: any) => {
         <SwitchButton setIsUSD={setIsUSD} />
       </div>
 
-      <div className="grid w-full gap-8 lg:grid-cols-3  ">
+      <div className="grid w-full gap-8  transition-all lg:grid-cols-3  ">
         {plans.map((plan) => (
           <div className="rounded-lg shadow">
             <div

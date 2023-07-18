@@ -49,7 +49,7 @@ function ProductCategory(props: Props) {
           <div>
             <div className="my-2">Home/Shop/ {categoryInformation?.title}</div>
             <div className="my-4 text-[40px] font-semibold">
-              Crystal & Gemstones
+              {categoryInformation?.title}
             </div>
 
             <div className="mb-8">
@@ -89,6 +89,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const id = getCategoryIdBySlug(products[0]?.categories, slug);
 
   const categoryInformationUrl = `${process.env.NEXT_PUBLIC_WP_API}/api/posts-with-acf-fields/category/${id}`;
+  console.log({ categoryInformationUrl });
   const categoryInformation = await fetch(categoryInformationUrl).then((r) =>
     r.json()
   );

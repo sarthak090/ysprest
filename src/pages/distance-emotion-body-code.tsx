@@ -8,6 +8,7 @@ import PricingBanner from '@/components/healingServices/PricingBanner';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 const benefits = [
   `Body & emotion code has proven effective in reducing chronic pain like neck pain, back pain, knee pain, etc.
 
@@ -84,12 +85,16 @@ function DistanceEmotionbodyCode(props: any) {
               Healing.
             </p>
             <div className="my-8 flex items-center justify-center gap-8">
-              <button className=" rounded-[40px] bg-white px-8 py-2 text-[20px] font-semibold text-[#0A2D4D] ">
-                Learn More
-              </button>
-              <button className=" first:  rounded-[40px] bg-[#166ab4] px-8 py-2 text-[20px] font-semibold text-[#fff] ">
-                Buy Now
-              </button>
+              <SmoothScrollLink to="learnmore">
+                <button className=" rounded-[40px] bg-white px-8 py-2 text-[20px] font-semibold text-[#0A2D4D] ">
+                  Learn More
+                </button>
+              </SmoothScrollLink>
+              <SmoothScrollLink to="buynow">
+                <button className=" first:  rounded-[40px] bg-[#166ab4] px-8 py-2 text-[20px] font-semibold text-[#fff] ">
+                  Buy Now
+                </button>
+              </SmoothScrollLink>
             </div>
           </section>
         </section>
@@ -161,7 +166,7 @@ function DistanceEmotionbodyCode(props: any) {
         </div>
       </section>
       <section className="my-4  2xl:px-52 ">
-        <section className="grid     grid-cols-12">
+        <section id="learnmore" className="grid     grid-cols-12">
           <div className="col-span-8 flex flex-col justify-center">
             <h3 className="mb-4 font-semibold text-[#4F3838]  lg:text-4xl">
               Are you suffering from following problems?
@@ -260,7 +265,7 @@ function DistanceEmotionbodyCode(props: any) {
           <Testimonials />
         </div>
       </div>
-      <div className="my-8">
+      <div id="buynow" className="my-8">
         <PricingBanner onClick={buyNowClickHandler} {...pricingData} />
       </div>
     </div>

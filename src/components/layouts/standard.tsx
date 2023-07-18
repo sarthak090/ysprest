@@ -2,15 +2,21 @@ import Banner from '@/components/banners/banner';
 import Categories from '@/components/categories/categories';
 import ProductGridHome from '@/components/products/grids/home';
 import type { HomePageProps } from '@/types';
-
+import { healingServicesHomeData } from '@/seed/home';
 import HeadingBanner from '../ui/HedingBanner';
 import YTEmbed from '../home/YTEmbed';
 import ChooseUs from '../home/ChooseUs';
 import HealYour from '../home/HealYour';
 import { Grid } from '../products/grid';
 import FeatureBlog from '../home/FeatureBlog';
+import { useModalAction } from '../ui/modal/modal.context';
 
 export default function Standard({ variables }: HomePageProps) {
+  const { openModal } = useModalAction();
+
+  function onModalClick(data: any) {
+    openModal('HOME_HEALING_POPUP', data);
+  }
   return (
     <section className="bg-white">
       <Banner layout="standard" variables={variables.types} />
@@ -32,6 +38,10 @@ export default function Standard({ variables }: HomePageProps) {
           <div className="">
             <HeadingBanner title="Blog" />
           </div>
+          <p className="text-center text-green-600">
+            We help spiritual seekers with our valuable insight and knowledge
+            globally with the help of our magazines and blogs.
+          </p>
 
           <FeatureBlog posts={variables.posts} />
           <button
@@ -52,6 +62,29 @@ export default function Standard({ variables }: HomePageProps) {
             <HeadingBanner title="Heal Your Inner Self And Infuse Positivity In Your Life" />
           </div>
           <HealYour />
+          <div className=" grid grid-cols-4 gap-8">
+            {healingServicesHomeData.map((data) => (
+              <div
+                className="flex flex-col items-center justify-center"
+                onClick={() => onModalClick({ ...data })}
+              >
+                <img
+                  src={data.img}
+                  width={150}
+                  height={200}
+                  className="cursor-pointer transition-all
+                 delay-150 hover:scale-105"
+                />
+                <div className="text-md mt-2 cursor-pointer text-blue-600 hover:underline">
+                  {data.name}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 mb-20">
+            <img src="https://yourspiritualrevolution.org/wp-content/uploads/2023/07/EvolvMe-July-Desktop-Image.png" />
+          </div>
         </div>
       </main>
     </section>

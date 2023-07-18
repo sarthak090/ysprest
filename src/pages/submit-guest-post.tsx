@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import SeoByRankMath from '@/components/products/SEO';
+import Link from 'next/link';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/submit-guest-post`;
@@ -138,7 +139,7 @@ function Submitguestpost(props: any) {
                 </div>
                 <div className="  flex justify-center border-t py-2">
                   <button className="my-1 rounded-md bg-[#0A2D4D] px-16 py-3 text-white">
-                    POST YOUR ARTICLE
+                    <Link href={plan.href}>POST YOUR ARTICLE</Link>
                   </button>
                 </div>
               </div>
@@ -232,6 +233,7 @@ const w = [
       'Access to worldwide readers.',
       'Free promotion on the website and social media.',
     ],
+    href: '/free-post-submission-page',
   },
   {
     title: 'LINK EXCHANGE',
@@ -242,6 +244,7 @@ const w = [
       'Free promotion on the website and social media.',
       'Link exchange on your website/ social media platform.',
     ],
+    href: '/link-exchange-submission-form',
   },
   {
     title: 'PAID GUEST-POST',
@@ -254,6 +257,7 @@ const w = [
       'Two Backlinks.',
       'Permanent do-follow link.',
     ],
+    href: '/paid-guest-post-submission/',
   },
 ];
 const benefits = [

@@ -40,7 +40,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
     (item) => !verifiedResponse?.unavailable_products?.includes(item.id)
   );
   const base_amount = calculateTotal(available_items);
-  const [_, applyCoupon] = useAtom(couponAtom);
+  const [couponData, applyCoupon] = useAtom(couponAtom);
 
   useEffect(() => {
     if (gateway === 'CASH_ON_DELIVERY') {
@@ -53,8 +53,10 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
       setVerifiedResponse(data);
       applyCoupon(null);
     } else {
-      const prepaymentCoupon = {
+      let prepaymentCoupon = {
         id: '9',
+        name: 'Pre Payment',
+        slug: 'razorpay',
         description: 'Prepayment Discount 5%	',
         image: {
           id: 925,
@@ -68,9 +70,16 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
 
         is_valid: true,
       };
+
+      if (couponData) {
+        const totalDiscountAmt =
+          parseFloat(prepaymentCoupon.amount) +
+          parseFloat(couponData.amount || '0');
+        prepaymentCoupon.description += couponData?.description;
+        prepaymentCoupon.amount = totalDiscountAmt.toString();
+      }
+
       applyCoupon({
-        name: 'Pre Payment',
-        slug: 'razorpay',
         ...prepaymentCoupon,
       });
       const data = {

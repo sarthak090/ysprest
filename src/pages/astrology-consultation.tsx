@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import { useCart } from '@/store/quick-cart/cart.context';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 function AstrologyConsultation(props: any) {
   const { product } = props;
   const { addItemToCart, isInCart } = useCart();
@@ -33,9 +34,11 @@ function AstrologyConsultation(props: any) {
             energetically charged <br /> semi-precious & precious stones
           </p>
           <div>
-            <button className="rounded-lg bg-darkBlue px-8 py-4 text-white">
-              Buy Now
-            </button>
+            <SmoothScrollLink to="buynow">
+              <button className="rounded-lg bg-darkBlue px-8 py-4 text-white">
+                Buy Now
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
       </section>
@@ -271,7 +274,7 @@ function AstrologyConsultation(props: any) {
           Let semi-precious stones help you attract health, wealth, fortune &
           prosperity through astrology consultation.
         </p>
-        <div className="flex justify-center">
+        <div id="buynow" className="flex justify-center">
           <button className="rounded-lg bg-darkBlue px-8 py-4 text-white">
             Buy Now
           </button>

@@ -85,9 +85,11 @@ export function useVerifyCoupon() {
           code: t('error-invalid-coupon'),
         });
       }
+      console.log(data?.coupon);
 
       applyCoupon(data?.coupon);
     },
+
     onError: (error) => {
       const {
         response: { data },

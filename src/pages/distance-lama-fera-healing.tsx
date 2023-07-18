@@ -9,6 +9,7 @@ import CartCounterButton from '@/components/cart/cart-counter-button';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
@@ -53,32 +54,38 @@ function DistanceLamaFeraHealing(props: any) {
             A quick and effective way of healing your mind, body, and soul.
           </p>
           <div className=" my-8 flex gap-8 ">
-            <button
-              style={{
-                backgroundColor: '#4F3838',
-                borderRadius: '30px 30px 30px 30px',
-                boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
-                padding: '15px 45px 12px 45px',
-                fontWeight: '400',
-                fontSize: '18px',
-              }}
-              className="text-white"
-            >
-              Learn More
-            </button>
-            <button
-              style={{
-                backgroundColor: '#C72E47',
-                borderRadius: '30px 30px 30px 30px',
-                boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
-                padding: '15px 45px 12px 45px',
-                fontWeight: '400',
-                fontSize: '18px',
-              }}
-              className="text-white"
-            >
-              Buy Now
-            </button>
+            <SmoothScrollLink to="learnmore">
+              <button
+                style={{
+                  backgroundColor: '#4F3838',
+                  borderRadius: '30px 30px 30px 30px',
+                  boxShadow:
+                    '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                  padding: '15px 45px 12px 45px',
+                  fontWeight: '400',
+                  fontSize: '18px',
+                }}
+                className="text-white"
+              >
+                Learn More
+              </button>
+            </SmoothScrollLink>
+            <SmoothScrollLink to="buynow">
+              <button
+                style={{
+                  backgroundColor: '#C72E47',
+                  borderRadius: '30px 30px 30px 30px',
+                  boxShadow:
+                    '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                  padding: '15px 45px 12px 45px',
+                  fontWeight: '400',
+                  fontSize: '18px',
+                }}
+                className="text-white"
+              >
+                Buy Now
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
         <div className="bg-bgBlue">
@@ -100,7 +107,10 @@ function DistanceLamaFeraHealing(props: any) {
         className="py-64 2xl:px-52"
       >
         <div className="grid gap-6 text-center text-[18px]">
-          <h2 className="text-center font-bold text-[#4F3838] md:text-4xl">
+          <h2
+            id="learnmore"
+            className="text-center font-bold text-[#4F3838] md:text-4xl"
+          >
             What is Lama Fera Healing?
           </h2>
           <p>
@@ -587,7 +597,7 @@ function DistanceLamaFeraHealing(props: any) {
           Enlighten Yourself!
           <p>with the fastest and most powerful healing technique.</p>
         </p>
-        <div className="flex gap-6">
+        <div id="buynow" className="flex gap-6">
           <div>
             <img
               src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/Distance-Lama-Fera-Healing.jpg"
@@ -608,7 +618,6 @@ function DistanceLamaFeraHealing(props: any) {
               Powerful Healing for 7 days (7 Sessions)
             </p>
             <p className="text-[20px]">Price: ₹5,999 (Incl. GST) / US $99</p>
-            <AddToCart data={product} variant="big" />
 
             <button
               style={{

@@ -17,6 +17,7 @@ import { NextPageWithLayout } from '@/types';
 import QueryProvider from '@/framework/client/query-provider';
 import { getDirection } from '@/lib/constants';
 import { useRouter } from 'next/router';
+import 'react-quill/dist/quill.snow.css';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;

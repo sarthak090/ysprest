@@ -9,6 +9,8 @@ import { useModalState } from '@/components/ui/modal/modal.context';
 import { Form } from '@/components/ui/forms/form';
 import { AddressType } from '@/framework/utils/constants';
 import { useUpdateUser } from '@/framework/user';
+import { useAtom } from 'jotai';
+import { toast } from 'react-toastify';
 
 type FormValues = {
   title: string;
@@ -163,7 +165,7 @@ export const AddressForm: React.FC<any> = ({
 export function CheckoutFormAddress(props: any) {
   const { t } = useTranslation('common');
   const { addresses, type, userId } = props;
-  const address = addresses[0];
+  const address = addresses[0] || {};
   const { mutate: updateProfile } = useUpdateUser();
 
   function onSubmit(values: FormValues) {
@@ -187,8 +189,49 @@ export function CheckoutFormAddress(props: any) {
   return (
     <div className="min-h-screen bg-light p-5 sm:p-8 md:min-h-0 md:rounded-xl">
       <h1 className="mb-4 text-center text-lg font-semibold  text-heading sm:mb-6">
-        {address.title ? t('text-update') : t('text-add-new')} {address.title}{' '}
+        {address?.title ? t('text-update') : t('text-add-new')} {address.title}{' '}
         {t('text-address')}
+      </h1>
+      <AddressForm
+        onSubmit={onSubmit}
+        defaultValues={{
+          title: address?.title ?? '',
+          type: address?.type ?? type,
+          address: {
+            ...address?.address,
+          },
+        }}
+      />
+    </div>
+  );
+}
+
+export function CheckoutFormAddressGuest(props: any) {
+  const [selectedAddress, setAddress] = useAtom(props.atom);
+
+  const { t } = useTranslation('common');
+  const { addresses, type, userId } = props;
+  console.log(props, selectedAddress);
+  const address = addresses[0] || {};
+
+  function onSubmit(values: FormValues) {
+    const formattedInput = {
+      id: address?.id,
+      // customer_id: customerId,
+      title: address.title,
+      type: address.type,
+      address: {
+        ...values.address,
+      },
+    };
+    setAddress(formattedInput);
+    toast.success('Addresss added');
+  }
+
+  return (
+    <div className="min-h-screen bg-light p-5 sm:p-8 md:min-h-0 md:rounded-xl">
+      <h1 className="mb-4 text-left  text-lg font-semibold  text-heading sm:mb-6">
+        {props?.label}
       </h1>
       <AddressForm
         onSubmit={onSubmit}

@@ -8,6 +8,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/reiki-healing-modality`;
@@ -104,14 +106,16 @@ function ReikiHealing(props: any) {
             </div>
           </div>
           <div className="my-8 flex gap-4">
-            <button className="rounded-lg bg-[#166AB4] px-12 py-4 text-[18px] font-semibold text-white outline-none">
-              Learn More
-            </button>
-            <a href="#buynow">
+            <SmoothScrollLink to="learnmore">
+              <button className="rounded-lg bg-[#166AB4] px-12 py-4 text-[18px] font-semibold text-white outline-none">
+                Learn More
+              </button>
+            </SmoothScrollLink>
+            <SmoothScrollLink to="buynow">
               <button className="rounded-lg bg-[#34344E] px-12 py-4 text-[18px] font-semibold text-white outline-none">
                 Buy Now
               </button>
-            </a>
+            </SmoothScrollLink>
           </div>
         </section>
       </section>
@@ -157,7 +161,7 @@ function ReikiHealing(props: any) {
             the energy itself.
           </p>
         </div>
-        <div>
+        <div id="learnmore">
           <h4 className="text-3xl font-bold text-[#0A2D4D]">
             How can Distance Reiki Healing help you?
           </h4>

@@ -73,40 +73,42 @@ export default function Blog(props: Props) {
       </div>
       <section className="grid gap-4 md:grid-cols-2">
         <div>
-          <div>
+          <Link href={`/blog/${firstPost.slug}`}>
             <div>
-              {firstPost.featuredImg.large && (
-                <Image
-                  src={firstPost.featuredImg.large}
-                  width={600}
-                  height={300}
-                  alt=""
-                />
-              )}
-            </div>
-            <div>
-              <Link href={`/blog/${firstPost.slug}`}>
-                <p className="my-1 text-[20px] font-semibold">
-                  {firstPost.title.rendered}
-                </p>
-              </Link>
-              <div className="my-1 font-semibold text-red-500">
-                <span>{firstPost.author.name}</span> | {firstPost.diff} Ago
+              <div>
+                {firstPost.featuredImg.large && (
+                  <Image
+                    src={firstPost.featuredImg.large}
+                    width={600}
+                    height={300}
+                    alt=""
+                  />
+                )}
               </div>
               <div>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: firstPost.excerpt.rendered,
-                  }}
-                />
-              </div>
-              <Link href={`/blog/${firstPost.slug}`}>
-                <div className="my-2 font-semibold text-blue-800">
-                  Read Article →
+                <Link href={`/blog/${firstPost.slug}`}>
+                  <p className="my-1 text-[20px] font-semibold">
+                    {firstPost.title.rendered}
+                  </p>
+                </Link>
+                <div className="my-1 font-semibold text-red-500">
+                  <span>{firstPost.author.name}</span> | {firstPost.diff} Ago
                 </div>
-              </Link>
+                <div>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: firstPost.excerpt.rendered,
+                    }}
+                  />
+                </div>
+                <Link href={`/blog/${firstPost.slug}`}>
+                  <div className="my-2 font-semibold text-blue-800">
+                    Read Article →
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
         <div>
           <div className="hidden w-full  gap-2 md:flex">
@@ -136,65 +138,72 @@ export default function Blog(props: Props) {
             <p className="text-xl font-semibold text-blue-800">Featured</p>
             <div>
               {posts.slice(1, 4).map((post) => (
-                <div className="my-2 flex gap-5">
-                  <div className="flex-shrink-0">
-                    <Image
-                      src={post.featuredImg.medium}
-                      width={100}
-                      height={100}
-                      className="object-cover"
-                    />
-                  </div>
+                <Link href={`/blog/${post.slug}`}>
+                  <div className="my-2 flex gap-5">
+                    <div className="flex-shrink-0">
+                      <Image
+                        src={post.featuredImg.medium}
+                        width={100}
+                        height={100}
+                        className="object-cover"
+                      />
+                    </div>
 
-                  <div className="flex flex-col ">
-                    <Link href={`/blog/${post.slug}`}>
-                      <p className="font-semibold">{post.title.rendered}</p>
-                    </Link>
-                    <p className="text-red-600">
-                      {post.author.name} {post.diff}
-                    </p>
-                    <Link className="text-blue-800" href={`/blog/${post.slug}`}>
-                      <div>Read Article →</div>{' '}
-                    </Link>
+                    <div className="flex flex-col ">
+                      <Link href={`/blog/${post.slug}`}>
+                        <p className="font-semibold">{post.title.rendered}</p>
+                      </Link>
+                      <p className="text-red-600">
+                        {post.author.name} {post.diff}
+                      </p>
+                      <Link
+                        className="text-blue-800"
+                        href={`/blog/${post.slug}`}
+                      >
+                        <div>Read Article →</div>{' '}
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <div className="my-6  border-b border-black"></div>
+      <div className="my-6   border-b border-black"></div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="my-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {posts.slice(4, posts.length).map((post: any) => (
-          <div key={post.id}>
-            <div>
-              <Image
-                src={post.featuredImg.medium}
-                width={500}
-                className="rounded-md"
-                height={300}
-                alt={post.title.rendered}
-              />
+          <Link href={`/blog/${post.slug}`}>
+            <div key={post.id}>
+              <div>
+                <Image
+                  src={post.featuredImg.medium}
+                  width={500}
+                  className="rounded-md"
+                  height={300}
+                  alt={post.title.rendered}
+                />
+              </div>
+              <div className="text-[14px] font-bold text-[#333333] lg:text-[20px]">
+                <p dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+              </div>
+              <div className="text-[12px]  font-semibold text-[#077A43] lg:text-[14px]">
+                <span className=" ">{post.author.name}</span> |{' '}
+                <span className="capitalize">{post.diff} Ago</span>
+              </div>
+              <div className="text-[12px]">
+                {post.excerpt.rendered.replace(/^(.{120}[^\s]*).*/, '$1')} .
+              </div>
+              <Link
+                className="my-4 text-[12px] font-bold text-[#166ab4] lg:text-[18px]"
+                href={`/blog/${post.slug}`}
+              >
+                Read Article →{' '}
+              </Link>
             </div>
-            <div className="text-[14px] font-bold text-[#333333] lg:text-[20px]">
-              <p dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-            </div>
-            <div className="text-[12px]  font-semibold text-[#077A43] lg:text-[14px]">
-              <span className=" ">{post.author.name}</span> |{' '}
-              <span className="capitalize">{post.diff} Ago</span>
-            </div>
-            <div className="text-[12px]">
-              {post.excerpt.rendered.replace(/^(.{120}[^\s]*).*/, '$1')} .
-            </div>
-            <Link
-              className="my-4 text-[12px] font-bold text-[#166ab4] lg:text-[18px]"
-              href={`/blog/${post.slug}`}
-            >
-              Read Article →{' '}
-            </Link>
-          </div>
+          </Link>
         ))}
       </div>
       {/* <div className="my-4 flex justify-center">

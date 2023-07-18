@@ -598,6 +598,69 @@ export interface CreateContactUsInput {
   subject: string;
   description: string;
 }
+export interface CreateHelearInput {
+  name: string;
+  healing_service: string;
+  phone_no: string;
+  message: string;
+}
+export interface CreateGuestFreeSubmittion {
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  phone_number: string;
+  company_name: string;
+  post_categories: string;
+  uploaded_article_file_link?: string;
+  post_content: string;
+  uploaded_profile_picture_link?: string;
+  author_bio: string;
+}
+
+export interface CreateLinkExchangeSubmittion {
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  phone_number: string;
+  company_name: string;
+  post_categories: string;
+  uploaded_article_file_link?: string;
+  post_content?: string;
+  uploaded_profile_picture_link?: string;
+  author_bio: string;
+  keyword: string;
+  url: string;
+}
+export interface HealerRegistration {
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  state: string;
+  city: string;
+  address: string;
+  shortBio?: string;
+  countryCode: string;
+  whatsappNumber: string;
+  mobileNumber: string;
+  uploaded_profile_picture_link: string;
+  country: string;
+}
+export interface CreatePaidSubmittion {
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  phone_number: string;
+  company_name: string;
+  post_categories: string;
+  uploaded_article_file_link?: string;
+  post_content: string;
+  uploaded_profile_picture_link?: string;
+  author_bio: string;
+  keyword_1: string;
+  keyword_2: string;
+  link_1: string;
+  link_2: string;
+}
 
 export interface CardInput {
   number: string;

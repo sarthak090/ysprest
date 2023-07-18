@@ -3,6 +3,7 @@ import Testimonials from '@/components/healingServices/Testimonials';
 import PricingOptions from '@/components/healingServices/intergral-healing/PricingOptions';
 import { getLayout } from '@/components/layouts/layout';
 import SeoByRankMath from '@/components/products/SEO';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 import Accordion from '@/components/ui/accordion';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { useCart } from '@/store/quick-cart/cart.context';
@@ -43,6 +44,40 @@ function DistaneSpritualHealing(props: any) {
               Restore your inner self with the power of spiritual healing &
               divine light guidance.
             </p>
+            <div className=" my-8 flex justify-center gap-8 ">
+              <SmoothScrollLink to="buynow">
+                <button
+                  style={{
+                    backgroundColor: '#0A2D4D',
+                    borderRadius: '30px 30px 30px 30px',
+                    boxShadow:
+                      '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                    padding: '15px 45px 12px 45px',
+                    fontWeight: '400',
+                    fontSize: '18px',
+                  }}
+                  className="text-white"
+                >
+                  <a href="#buynow">Buy Now</a>
+                </button>
+              </SmoothScrollLink>
+              <SmoothScrollLink to="learnmore">
+                <button
+                  style={{
+                    backgroundColor: '#166AB4',
+                    borderRadius: '30px 30px 30px 30px',
+                    boxShadow:
+                      '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                    padding: '15px 45px 12px 45px',
+                    fontWeight: '400',
+                    fontSize: '18px',
+                  }}
+                  className="text-white"
+                >
+                  Learn More
+                </button>
+              </SmoothScrollLink>
+            </div>
           </section>
         </section>
       </section>
@@ -88,7 +123,7 @@ function DistaneSpritualHealing(props: any) {
               <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Spiritual-Healing-Image-1.jpg" />
             </div>
             <div>
-              <p className="text-[30px] font-semibold">
+              <p id="learnmore" className="text-[30px] font-semibold">
                 Signs that say you need a spiritual healing & divine light
                 guidance
               </p>

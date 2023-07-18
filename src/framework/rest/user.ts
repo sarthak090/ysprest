@@ -34,6 +34,14 @@ export function useUser() {
   //@ts-ignore
   const customerId: string = getCustomerId();
 
+  if (!customerId) {
+    return {
+      me: null,
+      isLoading: null,
+      error: null,
+      isAuthorized: false,
+    };
+  }
   const { data, isLoading, error } = useQuery(
     [API_ENDPOINTS.USERS_ME],
     () => client.users.me(customerId),
@@ -44,8 +52,14 @@ export function useUser() {
       },
     }
   );
+
   //TODO: do some improvement here
-  return { me: data, isLoading, error, isAuthorized };
+  return {
+    me: data,
+    isLoading,
+    error,
+    isAuthorized: data ? isAuthorized : false,
+  };
 }
 
 export const useDeleteAddress = () => {

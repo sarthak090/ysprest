@@ -20,6 +20,7 @@ import { useAtom } from 'jotai';
 import { useToken } from '@/lib/hooks/use-token';
 import { useState } from 'react';
 import { useCustomerId } from '@/lib/hooks/user-customer';
+import Api from '@/config/WooCommerce';
 const loginFormSchema = yup.object().shape({
   username: yup.string().required('error-username-required'),
   password: yup.string().required('error-password-required'),
@@ -60,7 +61,8 @@ function LoginForm() {
         setServerError(data.message);
         return;
       }
-
+      await fetchCustomerByEmail(data.user_email);
+      return console.log(data);
       if (data.token) {
         setToken(data.token);
 
@@ -90,6 +92,26 @@ function LoginForm() {
             setServerError('Error While Fetching Customer Details');
             console.log(err);
           });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+  async function fetchCustomerByEmail(email: string) {
+    if (email) {
+      try {
+        Api.get(`customers?email=${email}`).then((resp) => console.log(resp));
+        // fetch(url)
+        //   .then((r) => r.json())
+        //   .then((customer_info) => {
+        //     setCustomerId(customer_info.id);
+        //     setAuthorized(true);
+        //     closeModal();
+        //   })
+        //   .catch((err) => {
+        //     setServerError('Error While Fetching Customer Details');
+        //     console.log(err);
+        //   });
       } catch (err) {
         console.log(err);
       }
@@ -144,13 +166,13 @@ function LoginForm() {
         )}
       </Form>
       {/* //===============// */}
-      {/* <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
+      <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
         <span className="absolute -top-2.5 bg-light px-2 ltr:left-2/4 ltr:-ml-4 rtl:right-2/4 rtl:-mr-4">
           {t('text-or')}
         </span>
-      </div> */}
-      {/* <div className="mt-2 grid grid-cols-1 gap-4">
+      </div>
+      <div className="mt-2 grid grid-cols-1 gap-4">
         <Button
           className="!bg-social-google !text-light hover:!bg-social-google-hover"
           disabled={isLoading}
@@ -162,16 +184,7 @@ function LoginForm() {
           {t('text-login-google')}
         </Button>
 
-        <Button
-          className="h-11 w-full !bg-gray-500 !text-light hover:!bg-gray-600 sm:h-12"
-          disabled={isLoading}
-          onClick={() => openModal('OTP_LOGIN')}
-        >
-          <MobileIcon className="h-5 text-light ltr:mr-2 rtl:ml-2" />
-          {t('text-login-mobile')}
-        </Button>
-
-        {isCheckout && (
+        {/* {isCheckout && (
           <Button
             className="h-11 w-full !bg-pink-700 !text-light hover:!bg-pink-800 sm:h-12"
             disabled={isLoading}
@@ -180,8 +193,16 @@ function LoginForm() {
             <AnonymousIcon className="h-6 text-light ltr:mr-2 rtl:ml-2" />
             {t('text-guest-checkout')}
           </Button>
-        )}
-      </div> */}
+        )} */}
+        <Button
+          className="h-11 w-full !bg-pink-700 !text-light hover:!bg-pink-800 sm:h-12"
+          disabled={isLoading}
+          onClick={() => router.push(Routes.checkoutGuest)}
+        >
+          <AnonymousIcon className="h-6 text-light ltr:mr-2 rtl:ml-2" />
+          {t('text-guest-checkout')}
+        </Button>
+      </div>
       <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
       </div>
@@ -204,9 +225,11 @@ export default function LoginView() {
       <div className="flex justify-center">
         <Logo />
       </div>
+
       <p className="mt-4 mb-8 text-center text-sm text-body sm:mt-5 sm:mb-10 md:text-base">
         Login with your username & password
       </p>
+
       <LoginForm />
     </div>
   );

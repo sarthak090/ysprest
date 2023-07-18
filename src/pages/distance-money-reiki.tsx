@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-lama-fera-healing`;
@@ -50,32 +51,38 @@ function Distancemoneyreiki(props: any) {
             abundance, prosperity & success.
           </p>
           <div className=" my-8 flex gap-8 ">
-            <button
-              style={{
-                backgroundColor: '#0A2D4D',
-                borderRadius: '30px 30px 30px 30px',
-                boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
-                padding: '15px 45px 12px 45px',
-                fontWeight: '400',
-                fontSize: '18px',
-              }}
-              className="text-white"
-            >
-              <a href="#buynow">Buy Now</a>
-            </button>
-            <button
-              style={{
-                backgroundColor: '#166AB4',
-                borderRadius: '30px 30px 30px 30px',
-                boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
-                padding: '15px 45px 12px 45px',
-                fontWeight: '400',
-                fontSize: '18px',
-              }}
-              className="text-white"
-            >
-              Learn More
-            </button>
+            <SmoothScrollLink to="buynow">
+              <button
+                style={{
+                  backgroundColor: '#0A2D4D',
+                  borderRadius: '30px 30px 30px 30px',
+                  boxShadow:
+                    '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                  padding: '15px 45px 12px 45px',
+                  fontWeight: '400',
+                  fontSize: '18px',
+                }}
+                className="text-white"
+              >
+                <a href="#buynow">Buy Now</a>
+              </button>
+            </SmoothScrollLink>
+            <SmoothScrollLink to="learnmore">
+              <button
+                style={{
+                  backgroundColor: '#166AB4',
+                  borderRadius: '30px 30px 30px 30px',
+                  boxShadow:
+                    '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                  padding: '15px 45px 12px 45px',
+                  fontWeight: '400',
+                  fontSize: '18px',
+                }}
+                className="text-white"
+              >
+                Learn More
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
         <div className="bg-bgBlue">
@@ -124,7 +131,7 @@ function Distancemoneyreiki(props: any) {
         </div>
       </section>
       <section className="grid grid-cols-2">
-        <div className="px-16">
+        <div id="learnmore" className="px-16">
           <div className="my-6 text-[40px] font-semibold">
             Who does money reiki benefit?
           </div>

@@ -8,6 +8,7 @@ import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 function DistanePanicHealing(props: any) {
   const { product } = props;
   const { addItemToCart, isInCart } = useCart();
@@ -39,6 +40,40 @@ function DistanePanicHealing(props: any) {
                 HEAL IMBALANCES OF YOUR MIND, BODY & SOUL BY <br />
                 CHANNELING DIVINE ENERGY THROUGH PRANIC HEALING.
               </h1>
+              <div className=" my-8 flex justify-center gap-8 ">
+                <SmoothScrollLink to="buynow">
+                  <button
+                    style={{
+                      backgroundColor: '#0A2D4D',
+                      borderRadius: '30px 30px 30px 30px',
+                      boxShadow:
+                        '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                      padding: '15px 45px 12px 45px',
+                      fontWeight: '400',
+                      fontSize: '18px',
+                    }}
+                    className="text-white"
+                  >
+                    <a href="#buynow">Buy Now</a>
+                  </button>
+                </SmoothScrollLink>
+                <SmoothScrollLink to="learnmore">
+                  <button
+                    style={{
+                      backgroundColor: '#166AB4',
+                      borderRadius: '30px 30px 30px 30px',
+                      boxShadow:
+                        '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                      padding: '15px 45px 12px 45px',
+                      fontWeight: '400',
+                      fontSize: '18px',
+                    }}
+                    className="text-white"
+                  >
+                    Learn More
+                  </button>
+                </SmoothScrollLink>
+              </div>
             </section>
           </section>
         </section>
@@ -66,7 +101,7 @@ function DistanePanicHealing(props: any) {
         </section>
         <section className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
           <div className="grid grid-cols-2 gap-8">
-            <div>
+            <div id="learnmore">
               <img src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/1.jpg" />
             </div>
             <div className="grid text-[18px]">
@@ -224,7 +259,7 @@ function DistanePanicHealing(props: any) {
               spiritually enlightening vibrational frequencies
             </p>
           </div>
-          <div className="grid px-32 lg:grid-cols-12">
+          <div className="grid px-32 lg:grid-cols-12" id="buynow">
             <div className="col-span-6 flex justify-center">
               <img
                 src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/distance-pranic-healing.jpg"

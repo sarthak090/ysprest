@@ -11,6 +11,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const productUrl =
@@ -62,21 +63,23 @@ function AuraChakraHealing(props: any) {
               Aura & Chakra Healing.
             </p>
             <div className=" my-8 flex gap-8 ">
-              <button
-                style={{
-                  backgroundColor: '#166AB4',
-                  borderRadius: '30px 30px 30px 30px',
-                  boxShadow:
-                    '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
-                  padding: '15px 45px 12px 45px',
-                  fontWeight: '400',
-                  fontSize: '18px',
-                }}
-                className="text-white"
-              >
-                Learn More
-              </button>
-              <a href="#buynow">
+              <SmoothScrollLink to="learnmore">
+                <button
+                  style={{
+                    backgroundColor: '#166AB4',
+                    borderRadius: '30px 30px 30px 30px',
+                    boxShadow:
+                      '0px 4px 10px 0px rgba(0, 0, 0, 0.2784313725490196)',
+                    padding: '15px 45px 12px 45px',
+                    fontWeight: '400',
+                    fontSize: '18px',
+                  }}
+                  className="text-white"
+                >
+                  Learn More
+                </button>
+              </SmoothScrollLink>
+              <SmoothScrollLink to="buynow">
                 <button
                   style={{
                     backgroundColor: '#0A2D4D',
@@ -91,7 +94,7 @@ function AuraChakraHealing(props: any) {
                 >
                   Buy Now
                 </button>
-              </a>
+              </SmoothScrollLink>
             </div>
           </section>
         </section>
@@ -157,7 +160,51 @@ function AuraChakraHealing(props: any) {
           </div>
         </div>
       </section>
-      <div className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52"></div>
+
+      <div
+        id="learnmore"
+        className="mx-auto w-full max-w-1920 bg-[#F3F3F3]   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52"
+      >
+        <section className="grid grid-cols-12">
+          <section className="col-span-8 flex flex-col justify-center">
+            <h4 className="text-[32px] font-bold text-blue-900">
+              Are you suffering from following problems?
+            </h4>
+            <ul className="my-8 grid list-disc gap-6 pl-12 text-[24px] ">
+              <li>Constantly Stressed or Anxious</li>
+              <li>Invaded by Negativity</li>
+              <li>Chronic Pains & Prolonged Sickness</li>
+              <li>Emotional Imbalance</li>
+            </ul>
+          </section>
+          <section className="col-span-4 flex flex-col justify-center">
+            <img
+              src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Untitled-1-removebg-preview.png"
+              alt="distance-auro-chakra-healing"
+            />
+          </section>
+        </section>
+        <div className="grid gap-8 text-[20px] ">
+          <p>
+            Feeling of stress, anxiousness, irritability, lethargy, and negative
+            thoughts are mainly caused due to the auras & personalities we
+            interact or come in contact with. If you keep feeling sick and
+            emotionally unstable constantly for a longer period of time, it is a
+            sign that your mind, body & soul needs aura cleansing and balancing
+            of chakra. Aura cleansing gives relief from stress and combats
+            physical pain. Blocked chakras & diluted aura develop sickness &
+            imbalances in your body. It impacts all the aspects of health in a
+            highly negative way.
+          </p>
+          <p>
+            Chakra balancing results as an effective solution to heal your mind,
+            body, and spirit physically, mentally, emotionally, and spiritually.
+            Successful completion of aura cleansing & chakra balancing will make
+            you healthy inside out. It radiates beauty, fitness & a personality
+            that acts as a magnet for prosperity & abundance.
+          </p>
+        </div>
+      </div>
       <section className="2xl:px-52">
         <p className="text-center text-[38px] font-semibold text-darkBlue">
           Benefits of Distance Aura & Chakra Healing

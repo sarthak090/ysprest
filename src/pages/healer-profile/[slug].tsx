@@ -4,6 +4,11 @@ import PremiumTag from '@/components/healingServices/PremiumTag';
 import BookOrWhatsappBtn from '@/components/healingServices/BookOrWhatsappBtn';
 import PremiumSidebar from '@/components/healingServices/PremiumSidebar';
 import SeoByRankMath from '@/components/products/SEO';
+import Input from '@/components/ui/forms/input';
+import PhoneInput from 'react-phone-input-2';
+import OtpCodeForm from '@/components/otp/code-verify-form';
+import ContactForm from '@/components/settings/contact-form';
+import HealerForm from '@/components/settings/healer-form';
 export { getStaticProps, getStaticPaths } from '@/framework/healer-profile.ssr';
 
 function HealerProfilePage({ healer, isPremium, seoData }: any) {
@@ -181,6 +186,18 @@ function HealerProfilePage({ healer, isPremium, seoData }: any) {
               )}
             </div>
           </div>
+          <section>
+            <HealerForm
+              healer={healer.title.rendered}
+              services={Object.keys(healer.x_metadata.healer_therapies)
+                .map((key) => {
+                  if (healer.x_metadata.healer_therapies[key] === 'true') {
+                    return key;
+                  }
+                })
+                .filter((t) => t !== undefined)}
+            />
+          </section>
         </div>
         <div className="col-span-4">
           {isPremium && (

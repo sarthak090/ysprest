@@ -78,6 +78,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
       amount: totalPrice <= 0 ? 0 : totalPrice,
     }
   );
+
   return (
     <div className={className}>
       <div className="flex flex-col border-b border-border-200 pb-2">
@@ -109,7 +110,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
               {t('text-discount')}
             </p>
             <span className="flex items-center text-xs font-semibold text-red-500 ltr:mr-auto rtl:ml-auto">
-              ({coupon?.description})
+              {coupon?.description || coupon.name}
               <button onClick={() => setCoupon(null)}>
                 <CloseIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
               </button>

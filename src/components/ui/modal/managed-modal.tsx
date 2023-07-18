@@ -48,6 +48,7 @@ const ReviewImageModal = dynamic(
   () => import('@/components/reviews/review-image-modal')
 );
 
+const HealingPopup = dynamic(() => import('@/components/home/HealingPopup'));
 const ManagedModal = () => {
   const { isOpen, view, data } = useModalState();
   const { closeModal } = useModalAction();
@@ -89,6 +90,7 @@ const ManagedModal = () => {
       {view === 'INTEGRAL_HEALING_MODAL' && (
         <IntegralHealingModalitites data={data} />
       )}
+      {view === 'HOME_HEALING_POPUP' && <HealingPopup data={data} />}
       {view === 'REVIEW_IMAGE_POPOVER' && <ReviewImageModal />}
     </Modal>
   );

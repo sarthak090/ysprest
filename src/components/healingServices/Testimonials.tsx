@@ -6,10 +6,10 @@ import {
   Navigation,
   SwiperOptions,
 } from '@/components/ui/slider';
-import { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
-
+SwiperCore.use([Pagination]);
 import { useIsRTL } from '@/lib/locals';
 export default function Testimonials() {
   const { isRTL } = useIsRTL();
@@ -60,6 +60,11 @@ export default function Testimonials() {
   };
 
   const [testimonials, setTestimonials] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.activeIndex);
+  };
   const fetchTestimonials = async () => {
     const url = process.env.NEXT_PUBLIC_WP_API + `/wp/v2/ysr-testimonial`;
     const data = await fetch(url).then((r) => r.json());
@@ -82,17 +87,17 @@ export default function Testimonials() {
       <Swiper
         id="author-card-menu"
         className=" grid grid-cols-3 !px-3 py-16"
-        modules={[Navigation, Autoplay]}
-        navigation={{
-          prevEl,
-          nextEl,
-
-          disabledClass: 'swiper-button-disabled',
-          hiddenClass: 'swiper-button-hidden',
-        }}
+        modules={[Autoplay, Pagination]}
         autoplay={{
           delay: 3000,
           disableOnInteraction: true,
+        }}
+        pagination={{
+          bulletClass:
+            'swiper-pagination-bullet !w-2.5 !h-2.5 !p-1 mt-8 !rounded-full !bg-gray-900 !border-0 !opacity-70',
+          bulletActiveClass: '!w-3 !h-3 !bg-accent',
+          clickableClass: 'cursor-pointer',
+          clickable: true,
         }}
         breakpoints={breakpoints}
       >
@@ -125,6 +130,15 @@ export default function Testimonials() {
               </div>
             </SwiperSlide>
           ))}
+        <div className="pagination my-8 pt-12">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={index === activeIndex ? 'active' : ''}
+              onClick={() => setActiveIndex(index)}
+            />
+          ))}
+        </div>
       </Swiper>
     </div>
   );

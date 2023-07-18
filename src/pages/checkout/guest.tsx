@@ -8,8 +8,15 @@ import dynamic from 'next/dynamic';
 import { getLayout } from '@/components/layouts/layout';
 import { AddressType } from '@/framework/utils/constants';
 import Seo from '@/components/seo/seo';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
+import PhoneInput from '@/components/ui/forms/phone-input';
+
+import {
+  CheckoutFormAddress,
+  CheckoutFormAddressGuest,
+} from '@/components/address/address-form';
+import { ContactGridGuest } from '@/components/checkout/contact/contact-grid';
 
 export { getStaticProps } from '@/framework/general.ssr';
 
@@ -26,6 +33,7 @@ const RightSideView = dynamic(
 
 export default function GuestCheckoutPage() {
   // const { me } = useUser();
+
   const { t } = useTranslation();
   const [, resetCheckout] = useAtom(clearCheckoutAtom);
   const [billingAddress] = useAtom(billingAddressAtom);
@@ -40,23 +48,30 @@ export default function GuestCheckoutPage() {
       <div className="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
         <div className="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
           <div className="w-full space-y-6 lg:max-w-2xl">
-            <ContactGrid
+            <ContactGridGuest
               className="bg-light p-5 shadow-700 md:p-8"
               contact={null}
               label={t('text-contact-number')}
               count={1}
             />
 
-            <GuestAddressGrid
+            {/* <GuestAddressGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-billing-address')}
               count={2}
               addresses={billingAddress ? [billingAddress] : []}
               atom={billingAddressAtom}
               type={AddressType.Billing}
+            /> */}
+            <CheckoutFormAddressGuest
+              addresses={billingAddress ? [billingAddress] : []}
+              atom={billingAddressAtom}
+              type={AddressType.Billing}
+              className="bg-light p-5 shadow-700 md:p-8"
+              label={t('text-billing-address')}
             />
 
-            <GuestAddressGrid
+            <CheckoutFormAddressGuest
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-shipping-address')}
               count={3}
@@ -64,6 +79,14 @@ export default function GuestCheckoutPage() {
               atom={shippingAddressAtom}
               type={AddressType.Shipping}
             />
+            {/* <GuestAddressGrid
+              className="bg-light p-5 shadow-700 md:p-8"
+              label={t('text-shipping-address')}
+              count={3}
+              addresses={shippingAddress ? [shippingAddress] : []}
+              atom={shippingAddressAtom}
+              type={AddressType.Shipping}
+            /> */}
             {/* <ScheduleGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-delivery-schedule')}

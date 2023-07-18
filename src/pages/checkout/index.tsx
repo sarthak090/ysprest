@@ -5,20 +5,9 @@ import { getLayout } from '@/components/layouts/layout';
 import { AddressType } from '@/framework/utils/constants';
 import Seo from '@/components/seo/seo';
 import { useUser } from '@/framework/user';
-import AddressForm, {
-  CheckoutFormAddress,
-} from '@/components/address/address-form';
-import { useModalAction } from '@/components/ui/modal/modal.context';
-import { useEffect } from 'react';
+import { CheckoutFormAddress } from '@/components/address/address-form';
 export { getStaticProps } from '@/framework/general.ssr';
 
-const ScheduleGrid = dynamic(
-  () => import('@/components/checkout/schedule/schedule-grid')
-);
-const AddressGrid = dynamic(
-  () => import('@/components/checkout/address-grid'),
-  { ssr: false }
-);
 const ContactGrid = dynamic(
   () => import('@/components/checkout/contact/contact-grid')
 );

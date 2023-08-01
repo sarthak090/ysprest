@@ -4,16 +4,21 @@ import { getLayout } from '@/components/layouts/layout';
 import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import SeoByRankMath from '@/components/products/SEO';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { formatDate } from '../../utils/formatDiff';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const posts = await fetch(
-    process.env.NEXT_PUBLIC_WP_API + '/wpr/v1/posts'
+    process.env.NEXT_PUBLIC_WP_API + '/wpr/v1/infinite-posts?start=1&limit=100'
   ).then((r) => r.json());
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/spiritual-blog`;
   const seoData = await fetch(seoURL).then((r) => r.json());
+  const formattedPosts = posts.map((post: any) => ({
+    ...post,
+    diff: formatDate(post.date),
+  }));
   return {
     props: {
-      posts: posts,
+      posts: formattedPosts,
       seoData: {
         meta_tags: extractMetaTags(seoData.head),
         jsonLtdScheam: extractScriptTags(seoData.head),

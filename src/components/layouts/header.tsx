@@ -43,9 +43,22 @@ const Header = ({ layout }: { layout?: string }) => {
         'lg:!h-auto': isFlattenHeader,
       })}
     >
+      <div className="fixed z-[60] w-full bg-[#166AB4] px-8 py-2 ">
+        <div className="flex gap-2 text-white">
+          <div>
+            <a href="tel:+918591706800">+91- 8591706800</a>
+          </div>
+          <div>
+            <a href="mailto:amitt@YourSpiritualRevolution.org">
+              | amitt@YourSpiritualRevolution.org
+            </a>
+          </div>
+        </div>
+        <div></div>
+      </div>
       <div
         className={cn(
-          'fixed z-50 flex h-14 w-full transform-gpu items-center justify-evenly border-b border-border-200 bg-light px-4 py-5 shadow-sm transition-transform duration-300 md:h-16 lg:h-22 lg:px-8',
+          'fixed top-8 z-50 flex h-14 w-full transform-gpu items-center justify-evenly border-b border-border-200 bg-light px-4 py-5 shadow-sm transition-transform duration-300 md:h-16 lg:h-22 lg:px-8',
           {
             'lg:absolute lg:border-0 lg:bg-transparent lg:shadow-none':
               isFlattenHeader,

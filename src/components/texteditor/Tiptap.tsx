@@ -55,6 +55,8 @@ export default function Tiptap({ value, onChange, ...rest }: any) {
   const editorStyle = {
     height: `${editorHeight}px`,
     margin: '20px 0',
+    background: 'white',
+    color: 'black',
   };
   return (
     <QuillNoSSRWrapper

@@ -61,12 +61,13 @@ function LoginForm() {
         setServerError(data.message);
         return;
       }
-      await fetchCustomerByEmail(data.user_email);
-      return console.log(data);
+
       if (data.token) {
         setToken(data.token);
 
-        await fetchCustomer(data.user_nicename);
+        await fetchCustomerByEmail(data.user_email);
+
+        // await fetchCustomer(data.user_nicename);
 
         return;
       }
@@ -100,18 +101,21 @@ function LoginForm() {
   async function fetchCustomerByEmail(email: string) {
     if (email) {
       try {
-        Api.get(`customers?email=${email}`).then((resp) => console.log(resp));
-        // fetch(url)
-        //   .then((r) => r.json())
-        //   .then((customer_info) => {
-        //     setCustomerId(customer_info.id);
-        //     setAuthorized(true);
-        //     closeModal();
-        //   })
-        //   .catch((err) => {
-        //     setServerError('Error While Fetching Customer Details');
-        //     console.log(err);
-        //   });
+        const url =
+          process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
+          `customer-details?email=${email}`;
+
+        fetch(url)
+          .then((r) => r.json())
+          .then((customer_info) => {
+            setCustomerId(customer_info.id);
+            setAuthorized(true);
+            closeModal();
+          })
+          .catch((err) => {
+            setServerError('Error While Fetching Customer Details');
+            console.log(err);
+          });
       } catch (err) {
         console.log(err);
       }

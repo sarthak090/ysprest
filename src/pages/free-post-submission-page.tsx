@@ -35,7 +35,9 @@ function Submitguestpost(props: any) {
           </a>{' '}
           before submitting your guest post.
         </p>
-        <FreePostSubmittion />
+        <section className="mb-12 bg-[#166AB4] p-4 text-white md:px-8 md:py-8">
+          <FreePostSubmittion />
+        </section>
         <section className="  font-sans ">
           <section
             id="guidelines"

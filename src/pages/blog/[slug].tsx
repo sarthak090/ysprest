@@ -7,6 +7,7 @@ import PostMeta from '@/components/post/PostMeta';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import SeoByRankMath from '@/components/products/SEO';
+import { formatDate } from 'utils/formatDiff';
 
 function Singleblog({ post, seoData }: any) {
   if (post.excerpt.rendered.toString().includes('Download Magazine')) {
@@ -19,8 +20,8 @@ function Singleblog({ post, seoData }: any) {
         <div className="container mx-auto  bg-white  px-4 lg:py-8  lg:px-28">
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-12">
-              <h1 className="my-4 text-center text-3xl font-bold text-blue-500 ">
-                Current Issue
+              <h1 className="my-6 text-center text-3xl font-bold text-blue-500 ">
+                {post.title.rendered}
               </h1>
 
               <div className="flex justify-center">
@@ -42,6 +43,25 @@ function Singleblog({ post, seoData }: any) {
                 )}
               </div>
             </div>
+
+            <div className="col-span-12 grid grid-cols-2 gap-4 lg:grid-cols-4 ">
+              {post.all_magzines && post.all_magzines.length > 0
+                ? post.all_magzines.map((magazine: any) => (
+                    <Link href={`/blog/${magazine.slug}`}>
+                      <div className="hover:cursor-pointer">
+                        <div className="flex items-center justify-center">
+                          <Image
+                            height={400}
+                            className="rounded-md"
+                            width={340}
+                            src={magazine.featuredImg?.large}
+                          />
+                        </div>
+                      </div>
+                    </Link>
+                  ))
+                : null}
+            </div>
           </div>
         </div>
       </>
@@ -58,8 +78,8 @@ function Singleblog({ post, seoData }: any) {
               src={post.x_featured_media_original}
               alt={post.title.rendered}
               className="mb-4 object-contain"
-              width={720}
-              height={400}
+              width={1020}
+              height={720}
             />
 
             <h1
@@ -72,6 +92,8 @@ function Singleblog({ post, seoData }: any) {
               className="post-content"
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />
+            <p className="text-2xl font-black">About The Author</p>
+
             <div className="my-4 flex max-w-[600px] gap-4 rounded-md bg-[#EFEFEF] p-4">
               <div className="flex-shrink-0">
                 <Image
@@ -84,11 +106,12 @@ function Singleblog({ post, seoData }: any) {
               </div>
               <div className="col-span-8">
                 <p className=" text-xl font-bold"> {post.x_author}</p>
+                <p className="my-2">{post.author_description}</p>
               </div>
             </div>
           </div>
           <div className="w-full lg:col-span-4">
-            <h5 className="font-newsreader mb-8 text-3xl font-bold text-blue-700">
+            <h5 className="font-newsreader mb-8 text-3xl font-bold text-[#166AB4]">
               We'd love to hear from you!
             </h5>
             <form className="    font-semibold">
@@ -174,9 +197,9 @@ export const getStaticProps: GetStaticProps = async ({
       return {
         props: {
           post: null,
-          notFound: true,
           ...(await serverSideTranslations(locale!, ['common'])),
         },
+        notFound: true,
       };
     }
     const { NEXT_PUBLIC_CMS } = process.env;
@@ -184,13 +207,37 @@ export const getStaticProps: GetStaticProps = async ({
     const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/blog/${slug}`;
     const seoData = await fetch(seoURL).then((r) => r.json());
 
-    const postTosend = {
-      post: { ...post[0] },
+    let postTosend = {
+      post: { ...post[0], diff: formatDate(post[0].diff) },
 
       //   seo,
 
       //   nextSeoData: genNextSeo({ seo, tags: post.tags, slug: post.slug }),
     };
+    if (
+      postTosend.post.excerpt.rendered.includes('Download Magazine') === false
+    ) {
+      try {
+        const authorUrl = `${NEXT_PUBLIC_CMS}/wp-json/wpr/v1/posts/${slug}`;
+        const latestPostUrl = `${NEXT_PUBLIC_CMS}/wp-json/wpr/v1/infinite-posts`;
+        const authorData = await fetch(authorUrl).then((r) => r.json());
+        const latestPostData = await fetch(latestPostUrl).then((r) => r.json());
+
+        postTosend.post.author_description = authorData.author.description;
+        postTosend.post.latest_posts = latestPostData;
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const url =
+          process.env.NEXT_PUBLIC_WP_API +
+          '/wpr/v1/category/issues?start=1&limit=200';
+
+        const data = await fetch(url).then((r) => r.json());
+        postTosend.post.all_magzines = data;
+      } catch (err) {}
+    }
 
     return {
       props: {
@@ -207,9 +254,9 @@ export const getStaticProps: GetStaticProps = async ({
     return {
       props: {
         post: null,
-        notFound: true,
         ...(await serverSideTranslations(locale!, ['common'])),
       },
+      notFound: true,
     };
   }
 };

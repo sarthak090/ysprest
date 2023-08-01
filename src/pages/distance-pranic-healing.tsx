@@ -9,6 +9,8 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import Benefits from '@/components/healingServices/distance-pranic-healing/Benefits';
+import YTEmbed from '@/components/home/YTEmbed';
 function DistanePanicHealing(props: any) {
   const { product } = props;
   const { addItemToCart, isInCart } = useCart();
@@ -166,39 +168,7 @@ function DistanePanicHealing(props: any) {
             peace, and show light to the soul.
           </p>
           <div className="grid grid-cols-4 gap-5">
-            <div className="card rounded-xl bg-bgBlue   py-5 px-4 shadow-2xl">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  id="_1"
-                  data-name="1"
-                  className="h-8 w-8"
-                  viewBox="0 0 99.568 99.568"
-                >
-                  <path
-                    id="Path_12459"
-                    data-name="Path 12459"
-                    d="M104.053,20.313a1.847,1.847,0,0,0-1.328-.562c-29.828,0-46.567-14.159-46.733-14.3a1.848,1.848,0,0,0-2.417,0c-.164.142-16.811,14.3-46.731,14.3A1.846,1.846,0,0,0,5,21.659c.024.671,2.873,67.418,49.2,82.816a1.841,1.841,0,0,0,1.162,0c46.329-15.4,49.178-82.145,49.2-82.816A1.84,1.84,0,0,0,104.053,20.313ZM54.784,100.778c-39.094-13.5-45.151-66.63-45.977-77.36C34.649,22.911,50.435,12.488,54.784,9.2c4.35,3.288,20.137,13.711,45.981,14.218C99.943,34.146,93.912,87.272,54.784,100.778Z"
-                    transform="translate(-5 -5)"
-                    fill="#166ab4"
-                  ></path>
-                  <path
-                    id="Path_12460"
-                    data-name="Path 12460"
-                    d="M93.381,22.843A1.828,1.828,0,0,0,92.09,22.2C72.066,21,58.661,13.79,52.447,9.586a1.835,1.835,0,0,0-2.065,0C44.168,13.79,30.744,21,10.738,22.2a1.868,1.868,0,0,0-1.309.645A1.928,1.928,0,0,0,9,24.244c1.881,16.927,9.68,57.6,41.764,69.735a1.938,1.938,0,0,0,1.291,0c32.01-12.1,39.865-52.809,41.745-69.735A1.85,1.85,0,0,0,93.381,22.843ZM68.009,55.129a.2.2,0,0,1-.2.2H55.766a.2.2,0,0,0-.2.2V67.576a.2.2,0,0,1-.2.2H47.468a.2.2,0,0,1-.2-.2V55.535a.2.2,0,0,0-.2-.2H35.022a.2.2,0,0,1-.2-.2V47.238a.2.2,0,0,1,.2-.2H47.063a.2.2,0,0,0,.2-.2V34.791a.2.2,0,0,1,.2-.2H55.36a.2.2,0,0,1,.2.2V46.832a.2.2,0,0,0,.2.2H67.806a.2.2,0,0,1,.2.2Z"
-                    transform="translate(-1.63 -1.399)"
-                    fill="#166ab4"
-                  ></path>
-                </svg>
-              </div>
-              <p className="my-1 text-[20px] font-semibold text-darkBlue">
-                Boosts immunity and stamina
-              </p>
-              <p>
-                Pranic Healing helps you increase stamina and build a strong
-                immune system.
-              </p>
-            </div>
+            <Benefits />
           </div>
         </section>
 
@@ -251,7 +221,7 @@ function DistanePanicHealing(props: any) {
             <Healers />
           </div>
         </div>
-
+        <YTEmbed embedId="3jKYDzomawU" />
         <section className="my-8">
           <div className="my-6 py-6 text-center text-[25px] font-semibold">
             <p className="text-[34px]">

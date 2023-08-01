@@ -100,7 +100,7 @@ export const ContactPage = () => {
           {/* Contact form */}
           <div className="order-1 mb-8 w-full bg-light p-5 md:order-2 md:mb-0 md:p-8 ltr:md:ml-7 rtl:md:mr-7 ltr:lg:ml-9 rtl:lg:mr-9">
             <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">
-              {t('text-questions-comments')}
+              We'd love to hear from you!
             </h1>
             <ContactForm />
           </div>

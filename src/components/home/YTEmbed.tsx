@@ -1,9 +1,7 @@
-export default function YTEmbed() {
+export default function YTEmbed({ embedId }: any) {
   return (
     <div>
-      <div
-        dangerouslySetInnerHTML={{ __html: getYtEmbed('qBOJsXccoS8') }}
-      ></div>
+      <div dangerouslySetInnerHTML={{ __html: getYtEmbed(embedId) }}></div>
     </div>
   );
 }

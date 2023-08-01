@@ -8,11 +8,9 @@ const PrivateRoute: React.FC = ({ children }) => {
   const router = useRouter();
   const { data } = useSession();
   const { me, isAuthorized } = useUser();
-
   const isUser = !!me;
 
   if (!isUser && !isAuthorized) {
-    console.log({ data: data?.user?.email, data2: data });
     return (
       <div className="relative flex min-h-screen w-full justify-center py-5 md:py-8">
         <button

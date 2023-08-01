@@ -233,7 +233,55 @@ p.read-more{
   font-style: italic;
   font-size: 18px;
 }
+.post-content .elementor-widget-container h2{
+  text-align: center;
+}
+ .elementor-social-icons-wrapper {
+  display: flex !important;
+  justify-content: center;
 
+}
+.about-us h2{
+  color: #166ab4;
+}
+.about-us   .elementor-widget-wrap .elementor-element-populated > .elementor-element > .elementor-widget-container > h2 {
+ 
+  padding: 20px 0px 20px 30px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 3px 12px 0px rgba(0, 0, 0, 0.1607843137254902);
+
+}
+.elementor-element-e13f138 h2{
+  font-size: 20px;
+  color: red;
+  text-align: left !important;
+}
+.disclaimer h2{
+  text-align: left !important;
+  color: #166AB4;
+
+}
+.elementor-element-d28d184 p{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap:4px;
+}
+.elementor-element-749f057{
+  border: 1px solid rgba(128, 128, 128, 0.127);
+}
+.medit h2.jet-listing-dynamic-field__content{
+  font-size: 22px;
+  text-align: left;
+
+}
+.medit .elementor-button-wrapper a{
+  color: white;
+  text-decoration: none;
+}
+.elementor-element-11f03d0{
+  display: flex;
+}
 .post-content h3 {
   margin: 15px 0;
   font-weight: 600;

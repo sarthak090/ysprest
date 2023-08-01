@@ -35,7 +35,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
       {label && (
         <label
           htmlFor={name}
-          className="block text-body-dark font-semibold text-sm leading-none mb-3"
+          className={`mb-3 block text-sm font-semibold leading-none text-body-dark  ${
+            className?.includes('text-white')
+              ? 'text-white'
+              : '  text-body-dark'
+          }`}
         >
           {label}
         </label>
@@ -44,7 +48,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
         id={name}
         name={name}
         className={cn(
-          'px-4 py-3 flex items-center w-full rounded appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+          'flex w-full appearance-none items-center rounded px-4 py-3 text-sm text-heading transition duration-300 ease-in-out focus:outline-none focus:ring-0',
           shadow && 'focus:shadow',
           variantClasses[variant],
           inputClassName

@@ -124,7 +124,7 @@ export const siteSettings = {
           },
           {
             name: 'Write For Us',
-            href: '/guest-post-service',
+            href: '/submit-guest-post',
           },
         ],
       },
@@ -197,10 +197,7 @@ export const siteSettings = {
         img: '/payment/master.png',
         url: '/',
       },
-      {
-        img: '/payment/skrill.png',
-        url: '/',
-      },
+
       {
         img: '/payment/paypal.png',
         url: '/',

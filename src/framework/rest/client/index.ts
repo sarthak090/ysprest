@@ -297,7 +297,8 @@ class Client {
       ),
   };
   users = {
-    me: (param: string) => HttpClient.get<User>(`/customer/${param}`),
+    me: (param: string) =>
+      HttpClient.get<User>(`/customer/${param !== undefined ? param : 0}`),
     update: (user: UpdateUserInput) =>
       HttpClient.put<User>(`${API_ENDPOINTS.USERS}/${user.id}`, user),
     login: (input: LoginUserInput) => {

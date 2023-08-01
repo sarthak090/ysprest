@@ -33,7 +33,7 @@ function Submitguestpost(props: any) {
         />
       </div>
 
-      <div className="mx-auto w-full max-w-1920 bg-white px-4 lg:px-32 xl:px-64  ">
+      <div className="mx-auto w-full max-w-1920 bg-white px-4 lg:px-32  2xl:px-52 ">
         <section>
           <h4 className="my-8 text-center text-xl font-bold underline lg:text-3xl">
             Join us as a Guest Post-Writer today!

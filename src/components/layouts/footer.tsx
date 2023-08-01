@@ -9,7 +9,7 @@ const Footer = () => {
   const { t } = useTranslation('common');
   return (
     <>
-      <AboveFooter />
+      {/* <AboveFooter /> */}
       <div className="flex w-full flex-col border-gray-800 bg-white px-5 md:px-10 lg:border-b-8 lg:px-[50px] xl:px-16">
         {/* Top */}
         <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 pt-16 md:grid-cols-3 lg:pt-24 lg:pb-16 xl:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] xl:gap-8 2xl:grid-cols-5">
@@ -110,9 +110,9 @@ const Footer = () => {
               className="  font-bold text-heading transition-colors hover:text-accent"
               href={siteSettings.footer.copyright.href}
             >
-              {siteSettings.footer.copyright.name}.
+              {siteSettings.footer.copyright.name}
             </Link>{' '}
-            {t('text-rights-reserved')}
+            | All Rights Reserved
           </span>
 
           {siteSettings.footer.payment_methods && (

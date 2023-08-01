@@ -28,7 +28,7 @@ function Submitguestpost(props: any) {
       <SeoByRankMath {...props.seoData} />
       <div className="mx-auto w-full max-w-1920 bg-white px-4 lg:px-32 xl:px-64  ">
         <h1 className="my-8 text-center text-4xl font-bold">
-          Submit Your Free Guest Post Now!
+          Submit Your Guest Post Now!
         </h1>
         <p className="  my-4 text-center">
           Note: Please read{' '}
@@ -37,7 +37,9 @@ function Submitguestpost(props: any) {
           </a>{' '}
           before submitting your guest post.
         </p>
-        <PaidPostSubmittion />
+        <section className="mb-12 bg-[#166AB4] p-4 text-white md:px-8 md:py-8">
+          <PaidPostSubmittion />
+        </section>
         <section className="  font-sans ">
           <section
             id="guidelines"

@@ -27,21 +27,36 @@ import {
 } from '@/components/auth/forgot-password';
 import { clearCheckoutAtom } from '@/store/checkout';
 import { useCustomerId } from '@/lib/hooks/user-customer';
-
+import { useSession } from 'next-auth/react';
+async function fetchCustomerByEmail(email: string) {
+  if (email) {
+    try {
+      const url =
+        process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
+        `customer-details?email=${email}`;
+      return new Promise((resolve, reject) => {
+        fetch(url)
+          .then((r) => r.json())
+          .then((customer_info) => {
+            resolve(customer_info);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
 export function useUser() {
+  const { data: authData, status } = useSession();
+
   const [isAuthorized] = useAtom(authorizationAtom);
   const { getCustomerId } = useCustomerId();
   //@ts-ignore
-  const customerId: string = getCustomerId();
+  let customerId: string = getCustomerId();
 
-  if (!customerId) {
-    return {
-      me: null,
-      isLoading: null,
-      error: null,
-      isAuthorized: false,
-    };
-  }
   const { data, isLoading, error } = useQuery(
     [API_ENDPOINTS.USERS_ME],
     () => client.users.me(customerId),

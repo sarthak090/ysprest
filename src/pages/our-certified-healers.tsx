@@ -14,6 +14,19 @@ export const getStaticProps = async ({ locale }: any) => {
 
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/our-certified-healers`;
   const seoData = await fetch(seoURL).then((r) => r.json());
+
+  healers.sort((a, b) => {
+    const membershipA = a.x_metadata.healing_membership;
+    const membershipB = b.x_metadata.healing_membership;
+
+    if (membershipA > membershipB) {
+      return -1;
+    } else if (membershipA < membershipB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
   return {
     props: {
       healers: healers,

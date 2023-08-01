@@ -33,7 +33,7 @@ export default function Standard({ variables }: HomePageProps) {
           <Grid products={variables.bestSelllerProducts.data} />
         </div>
         <div className="mt-9 grid gap-6 px-4 lg:gap-8">
-          <YTEmbed />
+          <YTEmbed embedId="qBOJsXccoS8" />
 
           <div className="">
             <HeadingBanner title="Blog" />

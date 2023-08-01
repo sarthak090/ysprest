@@ -9,6 +9,7 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import Accordion from '@/components/ui/accordion';
 const benefits = [
   `Body & emotion code has proven effective in reducing chronic pain like neck pain, back pain, knee pain, etc.
 
@@ -215,44 +216,46 @@ function DistanceEmotionbodyCode(props: any) {
           chakra. It is designed as a well-balanced holistic method that will
           serve you innumerable benefits like.
         </p>
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-4">
-            <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/benifits-of-aura-chakra.jpg" />
+        <section className=" ">
+          <div className="grid gap-5 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Benifit-of-Emotion-Code.jpg" />
+            </div>
+            <div className="flex flex-col justify-center gap-8 md:col-span-8">
+              {benefits.map((benefit) => (
+                <div className=" flex items-center gap-8">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    className="h-6 w-6"
+                    viewBox="0 0 109 109"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="linear-gradient"
+                        x1="0.9"
+                        y1="0.131"
+                        x2="0.212"
+                        y2="0.921"
+                        gradientUnits="objectBoundingBox"
+                      >
+                        <stop offset="0" stop-color="#166ab4"></stop>
+                        <stop offset="1" stop-color="#0a2d4d"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path
+                      id="checked"
+                      d="M80.154,92.146l-7.629,7.629L97.05,124.3l54.5-54.5-7.63-7.629-46.871,46.6-16.9-16.621ZM146.1,102.5a43.414,43.414,0,1,1-31.609-41.965l8.446-8.448A50.7,50.7,0,0,0,102.5,48,54.5,54.5,0,1,0,157,102.5Z"
+                      transform="translate(-48 -48)"
+                      fill="url(#linear-gradient)"
+                    ></path>
+                  </svg>
+                  <div className="text-[22px]">{benefit}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="col-span-8 my-8 flex flex-col justify-center gap-8">
-            {benefits.map((benefit) => (
-              <div className=" flex items-center gap-8">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  className="h-6 w-6 flex-shrink-0"
-                  viewBox="0 0 109 109"
-                >
-                  <defs>
-                    <linearGradient
-                      id="linear-gradient"
-                      x1="0.9"
-                      y1="0.131"
-                      x2="0.212"
-                      y2="0.921"
-                      gradientUnits="objectBoundingBox"
-                    >
-                      <stop offset="0" stop-color="#166ab4"></stop>
-                      <stop offset="1" stop-color="#0a2d4d"></stop>
-                    </linearGradient>
-                  </defs>
-                  <path
-                    id="checked"
-                    d="M80.154,92.146l-7.629,7.629L97.05,124.3l54.5-54.5-7.63-7.629-46.871,46.6-16.9-16.621ZM146.1,102.5a43.414,43.414,0,1,1-31.609-41.965l8.446-8.448A50.7,50.7,0,0,0,102.5,48,54.5,54.5,0,1,0,157,102.5Z"
-                    transform="translate(-48 -48)"
-                    fill="url(#linear-gradient)"
-                  ></path>
-                </svg>
-                <div className="text-[22px]">{benefit}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        </section>
       </section>
       <div className="mx-auto   w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
         <div className="text-center text-[30px] font-semibold text-darkBlue ">
@@ -268,6 +271,16 @@ function DistanceEmotionbodyCode(props: any) {
       <div id="buynow" className="my-8">
         <PricingBanner onClick={buyNowClickHandler} {...pricingData} />
       </div>
+      <section className="2xl:px-52">
+        <p className="text-center text-[24px] font-semibold text-[#616AB4]">
+          Frequently Asked Questions
+        </p>
+        <div className="py-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <Accordion items={faqs} translatorNS="en" />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -320,6 +333,56 @@ const processes = [
 
 
   `,
+  },
+];
+const faqs = [
+  {
+    title: `How will Remote/Distance Healing work?
+  `,
+
+    content: `Phenomena of Quantum Entanglement can explain distance Healing as an alternative healing therapy to overcome physical, mental, and emotional imbalances. Quantum entanglement discovered by Schrödinger is one of the most significant discoveries of modern science. It states that we all are particles in the universe, entangled together with strong force. Thus, even if we are separated by distance, we are connected and affect each other’s actions. Albert Einstein quoted this phenomenon as “spooky action at a distance.”
+  \n
+  This interconnection is referred to as ‘Oneness,’ the state of being one. The healers & practitioners, with their expertise, access this unified field of energy & activate the connection. They can alter your energy body with positive vibrations to attract abundance, overcome illness, and improve immunity. The various modalities can help in Integral Healing even at a remote distance.
+
+  `,
+  },
+  {
+    title: `What is a heart wall or a hidden heart wall?`,
+    content: `Our heart stores our emotions and our souls. So, to protect our hearts from the hurting, we build a wall around them. But these walls stop us from living to the fullest. So, it is essential to break those walls stone by stone, step by step.
+
+
+      `,
+  },
+  {
+    title: `What are trapped emotions?`,
+    content: `Trapped emotions are low-frequency energy suppressed in your body and become a part of your daily life. These energies can also be present in your electromagnetic field, affecting your physical body directly or indirectly.
+
+
+
+      `,
+  },
+  {
+    title: `What details do I need to share with you?`,
+    content: `We will need your personal details like Name, Photo and Date, Place, Time of Birth and issues you are facing (optional).
+
+      `,
+  },
+  {
+    title: `What is the difference between body code and emotion code?`,
+    content: `Body code deals with chronic pain and other physical problems, while Emotion code helps release the trapped emotions present in an individual. And while body code takes more time as it considers all aspects of physical suffering, emotion code deals with one aspect at a time and is less time-consuming.
+
+
+
+      `,
+  },
+  {
+    title: `What are the various modes of payment?`,
+    content: `We accept payment by credit cards/debit cards/net banking (for Indian customers) and PayPal (for international customers).
+
+
+
+
+      `,
   },
 ];
 DistanceEmotionbodyCode.getLayout = getLayout;

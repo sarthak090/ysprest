@@ -9,13 +9,14 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/reiki-healing-modality`;
   const productUrl =
     process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
-    `products/lama-fera-healing-modality`;
+    `products/reiki-healing-modality`;
   const product = await fetch(productUrl).then((r) => r.json());
   const seoData = await fetch(seoURL).then((r) => r.json());
   return {
@@ -36,29 +37,32 @@ function ReikiHealing(props: any) {
   const router = useRouter();
   const item = generateCartItem(product, product);
   const buyNowClickHandler = () => {
+    console.log(product);
     if (!isInCart(item.id)) {
       addItemToCart(item, 1);
-      router.push('/checkout');
+      // router.push('/checkout');
     }
   };
   return (
     <>
       <SeoByRankMath {...props.seoData} />
+      <CartCounterButton />
 
       <section
         style={{
           background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Reiki-Healing-Banner-Image.jpg")`,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '100%',
         }}
-        className="hero flex min-h-[600px] items-center justify-start bg-cover bg-center bg-no-repeat py-32 lg:px-32"
+        className="hero flex items-center justify-start !bg-cover  bg-center bg-no-repeat py-12 px-4 pt-16 md:min-h-[600px] lg:py-32 lg:px-32"
       >
         <section className="text-white">
-          <h1 className="text-[45px] font-semibold">Distance Reiki Healing</h1>
-          <p className="my-5 text-[20px] font-semibold">
+          <h1 className="text-center text-3xl font-semibold md:text-left lg:text-[45px]">
+            Distance Reiki Healing
+          </h1>
+          <p className="my-5 text-center text-xl  font-semibold md:text-left  lg:text-[20px]">
             Heal your mind, body & soul with the power of reiki energy!
           </p>
-          <div className="grid gap-5 text-[20px]">
+          <div className="grid gap-2 md:gap-5 lg:text-[20px]">
             <div className="flex items-center gap-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,14 +109,14 @@ function ReikiHealing(props: any) {
               <p>Promotes overall well-being.</p>
             </div>
           </div>
-          <div className="my-8 flex gap-4">
+          <div className="my-8 flex justify-center gap-4 md:justify-start">
             <SmoothScrollLink to="learnmore">
-              <button className="rounded-lg bg-[#166AB4] px-12 py-4 text-[18px] font-semibold text-white outline-none">
+              <button className="rounded-lg bg-[#166AB4] px-8 py-4 text-[18px] font-semibold text-white outline-none lg:px-12">
                 Learn More
               </button>
             </SmoothScrollLink>
             <SmoothScrollLink to="buynow">
-              <button className="rounded-lg bg-[#34344E] px-12 py-4 text-[18px] font-semibold text-white outline-none">
+              <button className="rounded-lg bg-[#34344E] px-8 py-4 text-[18px] font-semibold text-white outline-none lg:px-12">
                 Buy Now
               </button>
             </SmoothScrollLink>
@@ -120,16 +124,15 @@ function ReikiHealing(props: any) {
         </section>
       </section>
       <div className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
-        <div className="post-content"></div>
-        <div className="grid grid-cols-12 gap-2">
-          <div className="col-span-6">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-12">
+          <div className="flex md:col-span-6">
             <img
               width={500}
               height={600}
               src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/1-op.jpg"
             />
           </div>
-          <div className="col-span-6">
+          <div className="md:col-span-6">
             <h1 className="text-3xl font-bold">What is Reiki healing?</h1>
             <p className="my-4 text-[18px]">
               Reiki healing is one of the natural and oldest forms of energy
@@ -150,7 +153,7 @@ function ReikiHealing(props: any) {
               new & positive approach.
             </p>
           </div>
-          <p className="col-span-12 my-4 text-[18px]">
+          <p className="my-4 text-[18px] lg:col-span-12">
             As we all know that the Universe offers a soul with abundant joy,
             happiness & prosperity. But with time the blockages occur & that
             keeps the soul away from receiving and experiencing universal
@@ -190,13 +193,13 @@ function ReikiHealing(props: any) {
         </div>
       </div>
       <div>
-        <p className="bg-[#D0E1F0] py-8 text-center text-[34px] font-semibold 2xl:px-52">
+        <p className="bg-[#D0E1F0] py-8 text-center text-2xl font-semibold lg:text-[34px] 2xl:px-52">
           Distance Reiki Healing Energy healing causes no harm as it is a
           non-contact healing session.
         </p>
       </div>
       <div className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
-        <section className="grid grid-cols-12 gap-8">
+        <section className="grid gap-8 md:grid-cols-12">
           <div className="col-span-6">
             <p className="text-3xl font-semibold text-[#4D677E]">
               Benefits of Distance Reiki Healing
@@ -236,7 +239,7 @@ function ReikiHealing(props: any) {
           </h4>
         </section>
         <section className="lg:px-16">
-          <div className="grid grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             <div className="flex flex-col items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -449,7 +452,7 @@ function ReikiHealing(props: any) {
             spiritually guided energy of Reiki Healing.
           </p>
         </div>
-        <div className="grid px-32 lg:grid-cols-12">
+        <div className="grid px-2 lg:grid-cols-12 lg:px-32">
           <div className="col-span-6 flex justify-center">
             <img
               src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/3-op.jpg"

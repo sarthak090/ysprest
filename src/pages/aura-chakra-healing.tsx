@@ -50,14 +50,14 @@ function AuraChakraHealing(props: any) {
         style={{
           background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Aura-Chakra-Healing-Banner-e1643612358681.jpg")`,
         }}
-        className="  min-h-[400px] bg-cover     bg-no-repeat  pb-0"
+        className="  bg-cover !bg-right-top  !bg-no-repeat py-20  px-2 pb-0   lg:min-h-[400px]"
       >
-        <section className=" flex justify-start py-40 lg:px-32">
+        <section className=" flex justify-start lg:py-40 lg:px-32">
           <section className="  text-white opacity-100">
-            <h1 className="text-[34px] font-semibold ">
+            <h1 className="text-center font-sans text-3xl font-semibold lg:text-left lg:text-[34px] ">
               DISTANCE AURA & CHAKRA HEALING
             </h1>
-            <p className="my-3 text-[24px]">
+            <p className="my-3 text-center text-xl lg:text-left lg:text-[24px]">
               Heal your physical, mental, emotional & spiritual distress with{' '}
               <br />
               Aura & Chakra Healing.
@@ -101,11 +101,15 @@ function AuraChakraHealing(props: any) {
       </section>
 
       <section className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid gap-8 md:grid-cols-2">
           <div>
-            <img src="https://yourspiritualrevolution.org/wp-content/uploads/2021/09/aura-vector.png" />
+            <img
+              height={500}
+              width={500}
+              src="https://yourspiritualrevolution.org/wp-content/uploads/2021/09/aura-vector.png"
+            />
           </div>
-          <div className=" flex flex-col gap-4  text-[18px]">
+          <div className=" flex flex-col justify-center  gap-4 text-[18px]">
             <p className="text-[34px] font-semibold text-darkBlue">
               What is an Aura?
             </p>
@@ -130,7 +134,7 @@ function AuraChakraHealing(props: any) {
             </p>
           </div>
         </div>
-        <div className="my-6 grid grid-cols-2 gap-8">
+        <div className="my-6 grid gap-8 md:grid-cols-2">
           <div className="flex flex-col items-start justify-center gap-4 text-[18px]">
             <p className="  text-[28px] font-semibold text-darkBlue">
               What is Chakra Healing?
@@ -165,9 +169,9 @@ function AuraChakraHealing(props: any) {
         id="learnmore"
         className="mx-auto w-full max-w-1920 bg-[#F3F3F3]   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52"
       >
-        <section className="grid grid-cols-12">
-          <section className="col-span-8 flex flex-col justify-center">
-            <h4 className="text-[32px] font-bold text-blue-900">
+        <section className="grid md:grid-cols-12">
+          <section className="flex flex-col justify-center md:col-span-8">
+            <h4 className="text-2xl font-bold text-blue-900 lg:text-[32px]">
               Are you suffering from following problems?
             </h4>
             <ul className="my-8 grid list-disc gap-6 pl-12 text-[24px] ">
@@ -205,8 +209,8 @@ function AuraChakraHealing(props: any) {
           </p>
         </div>
       </div>
-      <section className="2xl:px-52">
-        <p className="text-center text-[38px] font-semibold text-darkBlue">
+      <section className="px-2 md:my-16 2xl:px-52">
+        <p className="text-center text-2xl font-semibold text-darkBlue lg:text-[38px]">
           Benefits of Distance Aura & Chakra Healing
         </p>
         <p className="my-6 text-center text-[19px]">
@@ -215,11 +219,11 @@ function AuraChakraHealing(props: any) {
           chakra. It is designed as a well-balanced holistic method that will
           serve you innumerable benefits like.
         </p>
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-4">
+        <div className="grid gap-5 md:grid-cols-12">
+          <div className="md:col-span-4">
             <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/benifits-of-aura-chakra.jpg" />
           </div>
-          <div className="col-span-8 flex flex-col justify-center gap-8">
+          <div className="flex flex-col justify-center gap-8 md:col-span-8">
             {benefits.map((benefit) => (
               <div className=" flex items-center gap-8">
                 <svg
@@ -256,14 +260,21 @@ function AuraChakraHealing(props: any) {
       </section>
 
       <div className="mx-auto   w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
-        <div className="text-center text-[30px] font-semibold text-darkBlue ">
+        <div className="text-center text-xl font-semibold text-darkBlue lg:text-[30px] ">
           How will Distance Aura Chakra Healing take place?
         </div>
-        <div className="my-8 grid grid-cols-3 gap-6">
+        <div className="my-8 grid gap-6 md:grid-cols-3">
           <Processes processes={processes} />
         </div>
         <div className="grid justify-center gap-8">
           <Testimonials />
+        </div>
+        <div className="flex justify-center">
+          <img
+            src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/Before-after.jpg"
+            width={500}
+            height={500}
+          />
         </div>
       </div>
 
@@ -281,18 +292,8 @@ function AuraChakraHealing(props: any) {
           Frequently Asked Questions
         </p>
         <div className="py-4">
-          <div className="grid grid-cols-2">
-            <Accordion
-              items={[
-                {
-                  content: `Dynamic Healer SWipper Will Go Here
-              `,
-                  title: `Dynamic Healer SWipper Will Go Here
-              `,
-                },
-              ]}
-              translatorNS="en"
-            />
+          <div className="grid gap-4 md:grid-cols-2">
+            <Accordion items={faqs} translatorNS="en" />
           </div>
         </div>
       </section>
@@ -302,7 +303,7 @@ function AuraChakraHealing(props: any) {
 
       <section
         style={{
-          background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/banner-2.jpg")`,
+          background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Aura-Chakra-Healing-Banner-e1643612358681.jpg")`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: '100%',
@@ -310,8 +311,9 @@ function AuraChakraHealing(props: any) {
         className="  flex   min-h-[300px] items-center justify-center  bg-no-repeat  pb-0"
       >
         <div className="grid gap-8">
-          <p className="text-[30px] font-semibold    text-dark">
-            Embrace Positivity, Enhance Energy And Evolve Spiritually.
+          <p className="text-[30px] font-semibold    text-white">
+            Cleanse, detoxify and embrace your inner self by radiating positive
+            energy.
           </p>
           <div className="flex justify-center">
             <button
@@ -385,5 +387,52 @@ const pricingData = {
 `,
   },
 };
+const faqs = [
+  {
+    title: `How will Remote/Distance Healing work?
+  `,
+
+    content: `Distance Healing can be explained by phenomena of Quantum Entanglement as an alternative healing therapy to overcome physical, mental, and emotional imbalances. Quantum entanglement discovered by Schrödinger is one of the most significant discoveries of modern science. It states that we all are particles in the universe, entangled together with strong force. Thus, even if we are separated by distance, we are connected and can affect each other’s actions. Albert Einstein quoted this phenomenon as “spooky action at a distance.”
+
+  \n
+
+  This interconnection is referred to as ‘Oneness,’ the state of being one. The healers & practitioners, with their expertise, access this unified field of energy & activate the connection. They can alter your energy body with positive vibrations to attract abundance, overcome illness, and improve immunity. The various modalities can help in Integral Healing even at a remote distance.
+  `,
+  },
+  {
+    title: `How do you know if your chakra is blocked?`,
+    content: `If you are feeling hyper, tense, nervous, or overly exhausted, it means your chakras are spinning too quickly. And the feeling of tiredness, ungroundedness, and lack of creative energy can be due to chakras spinning too slow.
+
+      `,
+  },
+  {
+    title: `Is Aura the same as the vibes?`,
+    content: `Aura is almost the same as vibes. Aura comprises “vibrational frequency,” which is short for vibes. You can sense someone’s emotions or energy without even interacting with that person. That is due to the Aura that surrounds that person.
+
+
+      `,
+  },
+  {
+    title: `What details do I need to share with you?`,
+    content: `We will need your personal details like Name, Photo and Date, Place, Time of Birth and issues you are facing (optional).
+
+      `,
+  },
+  {
+    title: `Is it possible to change your Aura?`,
+    content: `Yes, Auras can be changed depending on your emotions and the people you surround yourself with. For example, your Aura will be different when you are emotionally stressed, and it will differ if you are sensing the feeling of contentment. 
+
+
+      `,
+  },
+  {
+    title: `When will I get my report?`,
+    content: `You will receive a detailed report mentioned with all the information within 3-4 days.
+
+
+
+      `,
+  },
+];
 AuraChakraHealing.getLayout = getLayout;
 export default AuraChakraHealing;

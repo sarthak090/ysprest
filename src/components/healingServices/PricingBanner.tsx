@@ -25,7 +25,7 @@ function PricingBanner(props: Props) {
   };
   return (
     <>
-      <div id="buynow" className="grid px-32 lg:grid-cols-12">
+      <div id="buynow" className="grid px-2 lg:grid-cols-12 lg:px-32">
         <div className="col-span-6 flex justify-center">
           <img
             src={props.img_src}

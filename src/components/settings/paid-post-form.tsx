@@ -92,9 +92,10 @@ const PaidPostSubmittion = () => {
         <>
           <div className="grid grid-cols-1  ">
             <Input
-              label={`First Name`}
+              label={`First Name *`}
               {...register('first_name')}
               variant="outline"
+              className="!text-white"
               error={t(errors.first_name?.message!)}
             />
           </div>
@@ -102,30 +103,31 @@ const PaidPostSubmittion = () => {
             label={`Last Name`}
             {...register('last_name')}
             variant="outline"
-            className="my-6"
+            className=" my-6 !text-white"
             error={t(errors.last_name?.message!)}
           />
           <Input
             label={`Company Name            `}
             {...register('company_name')}
             variant="outline"
-            className="my-6"
+            className="my-6 !text-white"
             error={t(errors.company_name?.message!)}
           />
           <Input
             label={`Email Address`}
             {...register('email_address')}
             variant="outline"
-            className="my-6"
+            className="my-6 !text-white"
             error={t(errors.email_address?.message!)}
           />
           <Input
             label={`Mobile No`}
             {...register('phone_number')}
             variant="outline"
-            className="my-6"
+            className="my-6 !text-white"
             error={t(errors.phone_number?.message!)}
           />
+
           <div {...register('post_categories')}>
             <label htmlFor="">Post Category </label>
             <select required className="mt-3 w-full">
@@ -141,8 +143,14 @@ const PaidPostSubmittion = () => {
             </label>
             <input type="file" {...register('uploaded_article_file_link')} />
           </div>
-          <div className="my-6">
-            <label htmlFor="">Post Content</label>
+
+          <div className="my-6 text-white">
+            <label htmlFor="">
+              Post Content
+              <span className="ml-2 text-xs">
+                (The article can be up to 500-600 words){' '}
+              </span>
+            </label>
             <Tiptap onChange={setHTml} value={html} />
             {errors.post_content?.message! && (
               <p className="mt-2 text-xs text-red-500">
@@ -150,48 +158,58 @@ const PaidPostSubmittion = () => {
               </p>
             )}
           </div>
+
           <div className="my-6 mt-16 grid">
-            <label className="mb-2">Profile Picture*</label>
+            <label className="mb-2">
+              Profile Picture
+              <span className="ml-2 text-xs">
+                {' '}
+                (Only jpg, png & webp files are allowed.)
+              </span>
+            </label>
             <input type="file" {...register('uploaded_profile_picture_link')} />
           </div>
-          <TextArea
-            label={`Author Bio
 
-            `}
+          <TextArea
+            label={`Author Bio (Bio can be up to 50-70 words) `}
             {...register('author_bio')}
             variant="outline"
-            className="my-6"
+            className="my-6 text-white"
             error={t(errors.author_bio?.message!)}
           />
           <Input
             label={`Keyword 1`}
             {...register('keyword_1')}
             variant="outline"
-            className="my-6"
+            className="my-6 text-white"
             error={t(errors.keyword_1?.message!)}
           />
           <Input
             label={`Link 1`}
             {...register('link_1')}
             variant="outline"
-            className="my-6"
+            className="my-6 text-white"
             error={t(errors.link_1?.message!)}
           />
           <Input
             label={`Keyword 2`}
             {...register('keyword_2')}
             variant="outline"
-            className="my-6"
+            className="my-6 text-white"
             error={t(errors.keyword_1?.message!)}
           />
           <Input
             label={`Link 2`}
             {...register('link_2')}
             variant="outline"
-            className="my-6"
+            className="my-6 text-white"
             error={t(errors.link_1?.message!)}
           />
-          <Button className="mb-4 w-full" loading={false} disabled={false}>
+          <Button
+            className="mb-4 w-full bg-black text-white"
+            loading={false}
+            disabled={false}
+          >
             {t('text-submit')}
           </Button>
         </>

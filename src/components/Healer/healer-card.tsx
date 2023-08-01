@@ -47,9 +47,9 @@ export default function HealerCard({ healer }: any) {
         <div className="my-2 text-center font-semibold">
           <p className="text-[24px]">{healer.title.rendered}</p>
         </div>
-        <div className="my-2 text-center text-sm font-semibold text-[#053560]">
+        <div className="my-2 text-center text-sm font-semibold text-[#39598F]">
           {healer_therapies.map((service, idx) => (
-            <span className="p-1 text-[14px]">
+            <span className="p-1 text-[14px]  ">
               {service} {healer_therapies.length !== idx + 1 ? ' ,' : ''}
             </span>
           ))}

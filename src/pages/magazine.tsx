@@ -62,7 +62,10 @@ function Magazines(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const url = process.env.NEXT_PUBLIC_WP_API + '/wpr/v1/category/issues';
+  const url =
+    process.env.NEXT_PUBLIC_WP_API +
+    '/wpr/v1/category/issues?start=1&limit=200';
+
   const data = await fetch(url).then((r) => r.json());
   const { NEXT_PUBLIC_CMS } = process.env;
 

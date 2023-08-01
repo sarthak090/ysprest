@@ -81,7 +81,7 @@ export default function Blog(props: Props) {
                     src={firstPost.featuredImg.large}
                     width={600}
                     height={300}
-                    alt=""
+                    alt={firstPost.title.rendered}
                   />
                 )}
               </div>
@@ -92,7 +92,7 @@ export default function Blog(props: Props) {
                   </p>
                 </Link>
                 <div className="my-1 font-semibold text-red-500">
-                  <span>{firstPost.author.name}</span> | {firstPost.diff} Ago
+                  <span>{firstPost.author.name}</span> | {firstPost.diff}
                 </div>
                 <div>
                   <p
@@ -178,20 +178,22 @@ export default function Blog(props: Props) {
           <Link href={`/blog/${post.slug}`}>
             <div key={post.id}>
               <div>
-                <Image
-                  src={post.featuredImg.medium}
-                  width={500}
-                  className="rounded-md"
-                  height={300}
-                  alt={post.title.rendered}
-                />
+                {post.featuredImg.medium && (
+                  <Image
+                    src={post.featuredImg.medium}
+                    width={500}
+                    className="rounded-md"
+                    height={300}
+                    alt={post.title.rendered}
+                  />
+                )}
               </div>
               <div className="text-[14px] font-bold text-[#333333] lg:text-[20px]">
                 <p dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
               </div>
               <div className="text-[12px]  font-semibold text-[#077A43] lg:text-[14px]">
                 <span className=" ">{post.author.name}</span> |{' '}
-                <span className="capitalize">{post.diff} Ago</span>
+                <span className="capitalize">{post.diff} </span>
               </div>
               <div className="text-[12px]">
                 {post.excerpt.rendered.replace(/^(.{120}[^\s]*).*/, '$1')} .

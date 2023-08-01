@@ -7,6 +7,7 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import Accordion from '@/components/ui/accordion';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-lama-fera-healing`;
@@ -135,8 +136,10 @@ function Distancemoneyreiki(props: any) {
           <div className="my-6 text-[40px] font-semibold">
             Who does money reiki benefit?
           </div>
-          <div className="ml-6 list-item text-[18px]  ">
-            Anyone who is struggling from financial instability
+          <div className="ml-6   grid gap-6 text-[20px]  ">
+            {list1.map((list) => (
+              <li>{list}</li>
+            ))}
           </div>
         </div>
         <div className="flex items-center justify-center bg-bgBlue p-16">
@@ -148,19 +151,139 @@ function Distancemoneyreiki(props: any) {
       </section>
       <section className="my-8 text-[#0A2D4D] 2xl:px-52">
         <p className="text-center text-[30px] font-semibold">Benefit</p>
-        <div className="grid grid-cols-3">
-          <div className="flex gap-2 rounded-xl bg-bgBlue px-6 py-8 text-[20px] shadow-700 ">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#0A2D4D] text-[#0A2D4D] text-black">
-              1
-            </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {benefits.map((benefit, index) => (
+            <div className="flex items-center gap-2 rounded-xl bg-bgBlue px-6 py-6 text-[20px] shadow-700 ">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#0A2D4D] text-[#0A2D4D] text-black">
+                {index + 1}
+              </div>
 
-            <p>Removes blockages from wealth abundance & success</p>
-          </div>
+              <p>{benefit}</p>
+            </div>
+          ))}
         </div>
         <HealingProcess onClick={buyNowClickHandler} />
+      </section>
+      <section className="2xl:px-52">
+        <p className="text-center text-[24px] font-semibold text-[#616AB4]">
+          Frequently Asked Questions
+        </p>
+        <div className="py-4">
+          <div className="grid gap-4 md:grid-cols-1">
+            <Accordion items={faqs} translatorNS="en" />
+          </div>
+        </div>
+      </section>
+      <section
+        style={{
+          background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Money-Reiki-Healing-Banner-2.jpg")`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: '100%',
+        }}
+        className="  flex   min-h-[300px] items-center justify-center  bg-no-repeat  pb-0"
+      >
+        <div className="grid gap-8">
+          <p className="text-[30px] font-semibold    text-white">
+            Don’t let negativity keep you away from your desires & success.
+            Attract money & wealth abundance with Money Reiki now!
+          </p>
+          <div className="flex justify-center">
+            <button
+              onClick={buyNowClickHandler}
+              className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall"
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
       </section>
     </section>
   );
 }
+const benefits = [
+  `Removes blockages from wealth abundance & success
+  `,
+  `Heals past life karmic money wounds
+  `,
+  `Encourages self-confidence & enhance self-worth
+  `,
+  `Manifests your goals, dreams & desires
+  `,
+  `Clears negative thoughts & energies surrounding money
+  `,
+  `Attracts better opportunities & money prosperity
+  `,
+];
+const list1 = [
+  `Anyone who is struggling from financial instability
+  `,
+  `Anyone who wants to expand their business
+  `,
+  `Anyone who wants to attract more business opportunities
+  `,
+  `Anyone who wants to manifest wealth abundance
+  `,
+  `Anyone who wants to manifest success & prosperity
+  `,
+  `Anyone who wants to resolve monetary issues
+  `,
+  `Anyone who wants to heal financial blockages
+  `,
+];
+const faqs = [
+  {
+    title: `How will Remote/Distance Healing work?
+  `,
+
+    content: `Distance Healing can be explained by phenomena of Quantum Entanglement as an alternative healing therapy to overcome physical, mental, and emotional imbalances. Quantum entanglement discovered by Schrödinger is one of the most significant discoveries of modern science. It states that we all are particles in the universe, entangled together with strong force. Thus, even if we are separated by distance, we are connected and affect each other’s actions. Albert Einstein quoted this phenomenon as “spooky action at a distance.”
+
+    \n
+    This interconnection is referred to as ‘Oneness,’ the state of being one. The healers & practitioners, with their expertise, access this unified field of energy & activate the connection. They can alter your energy body with positive vibrations to attract abundance, overcome illness, and improve immunity. The various modalities can help in Integral Healing even at a remote distance.
+
+
+  `,
+  },
+  {
+    title: `What is the source of energy for money reiki?`,
+    content: `Unlike other physical energy, Reiki energy comes from within us. The energy comes from the transcendental part of ourselves which is connected to the infinite supply of healing energy.
+
+
+      `,
+  },
+  {
+    title: `What are trapped emotions?`,
+    content: `Trapped emotions are low-frequency energy suppressed in your body and become a part of your daily life. These energies can also be present in your electromagnetic field, affecting your physical body directly or indirectly.
+
+
+
+      `,
+  },
+  {
+    title: `Is it available in my Country?`,
+    content: `The programs are available to anyone and everyone around the world. Register to know more about the availability of services.
+
+
+      `,
+  },
+  {
+    title: `What Details Do I Need To Share With You?`,
+    content: `We will need your personal details like Name, Photo and Date, Place, and Time of Birth.
+
+
+
+
+      `,
+  },
+  {
+    title: `What are the various modes of payment?`,
+    content: `We accept payment by credit cards/debit cards/net banking (for Indian customers) and PayPal (for international customers).
+
+
+
+
+      `,
+  },
+];
 Distancemoneyreiki.getLayout = getLayout;
 export default Distancemoneyreiki;

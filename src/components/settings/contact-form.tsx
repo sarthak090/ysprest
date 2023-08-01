@@ -46,15 +46,52 @@ const ContactForm = () => {
               error={t(errors.email?.message!)}
             />
           </div>
-          <Input
+          {/* <Input
             label={t('text-subject')}
             {...register('subject')}
             variant="outline"
             className="my-6"
             error={t(errors.subject?.message!)}
-          />
+          /> */}
+          <div className="mt-3 grid grid-cols-2 gap-8">
+            <div className="grid">
+              <label htmlFor="">Country Code *</label>
+              <input
+                placeholder="Code"
+                className="mt-2 rounded-lg border   px-4 py-2 outline-none"
+              />
+            </div>
+            <div className="grid">
+              <label htmlFor="">Mobile No. *</label>
+              <input
+                placeholder="Enter Your Number"
+                type="email"
+                className="mt-2 rounded-lg border   px-4 py-2 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="mt-3  gap-3">
+            <div className="grid">
+              <label htmlFor="">What You Want To Know? *</label>
+
+              <select
+                {...register('subject')}
+                className="mt-2 rounded-lg border   px-4 py-2 outline-none"
+              >
+                <option value="Integral Healing Package">
+                  Integral Healing Package
+                </option>
+                <option value="Aura and Chakra Healing">
+                  Aura and Chakra Healing
+                </option>
+                <option value="Reiki Healing">Reiki Healing</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
           <TextArea
-            label={t('text-description')}
+            label={`Message`}
             {...register('description')}
             variant="outline"
             className="my-6"

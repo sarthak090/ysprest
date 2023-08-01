@@ -7,6 +7,9 @@ import { useContact } from '@/framework/user';
 import { useTranslation } from 'next-i18next';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
+import PhoneInput from 'react-phone-input-2';
+import PhoneNumberForm from '../otp/phone-number-form';
+import { Controller } from 'react-hook-form';
 
 const guestSubmittionFormSchema = yup.object().shape({
   first_name: yup.string().required('First name is required'),
@@ -104,21 +107,26 @@ const HealerRegistrationForm = () => {
             />
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
-            <Input
+            {/* <Input
               label={`Country Code`}
               {...register('countryCode')}
               variant="outline"
               className="col-span-4 my-6"
               error={t(errors.countryCode?.message!)}
+            /> */}
+            <PhoneInput
+              country="in"
+              // inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base ltr:!border-r-0 rtl:!border-l-0 !rounded ltr:!rounded-r-none rtl:!rounded-l-none focus:!border-accent !h-12"
+              // dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
             />
-            <Input
+            {/* <Input
               label={` Whatsapp Number
               `}
               {...register('whatsappNumber')}
               variant="outline"
               className="col-span-8 my-6"
               error={t(errors.whatsappNumber?.message!)}
-            />
+            /> */}
           </div>
           <Input
             label={`Email Address`}
@@ -131,6 +139,9 @@ const HealerRegistrationForm = () => {
             <label htmlFor="" className="mb-2">
               {' '}
               Profile Picture
+              <span className="ml-2 text-xs text-red-600">
+                (Only JPG & PNG format allowed with size upto 5MB)
+              </span>
             </label>
             <input type="file" {...register('uploaded_profile_picture_link')} />
           </div>
@@ -178,7 +189,7 @@ const HealerRegistrationForm = () => {
           />
 
           <Button className="mb-4 w-full" loading={false} disabled={false}>
-            {t('text-submit')}
+            Proceed
           </Button>
         </>
       )}

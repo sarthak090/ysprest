@@ -8,10 +8,17 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { extractMetaTags, extractScriptTags } from 'utils/extractMetaTags';
 import SeoByRankMath from '@/components/products/SEO';
 import { formatDate } from 'utils/formatDiff';
+import HearFromUsForm from '@/components/blog/hear-from-us-form';
+import AuthorDetails from '@/components/blog/AuthorDetails';
+import Comment from '@/components/blog/Comment';
+import TabsSidebar from '@/components/blog/TabsSidebar';
+import EmbeddedPDF from '@/components/Embed/EmbedPdf';
+import { useModalAction } from '@/components/ui/modal/modal.context';
 
 function Singleblog({ post, seoData }: any) {
   if (post.excerpt.rendered.toString().includes('Download Magazine')) {
     const bookLink = extractPdfLink(post.content.rendered);
+    const { openModal } = useModalAction();
 
     return (
       <>
@@ -25,20 +32,17 @@ function Singleblog({ post, seoData }: any) {
               </h1>
 
               <div className="flex justify-center">
-                <Image
-                  src={post.x_featured_media_original}
-                  alt={post.title.rendered}
-                  className="mb-4"
-                  width={500}
-                  height={500}
-                />
+                {bookLink && <EmbeddedPDF url={bookLink} />}
               </div>
               <div className="my-8 flex justify-center">
                 {bookLink && (
-                  <button className="rounded-md bg-blue-800 px-6 py-3 text-white outline-none">
-                    <a target="_blank" href={bookLink}>
-                      Download Magazine
-                    </a>
+                  <button
+                    onClick={() => {
+                      openModal('DOWNLOAD_MAGZINE_MODAL', bookLink);
+                    }}
+                    className="rounded-md bg-blue-800 px-6 py-3 text-white outline-none"
+                  >
+                    Download Magazine
                   </button>
                 )}
               </div>
@@ -92,88 +96,20 @@ function Singleblog({ post, seoData }: any) {
               className="post-content"
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />
-            <p className="text-2xl font-black">About The Author</p>
+            <p className="text-2xl font-semibold">About The Author</p>
 
-            <div className="my-4 flex max-w-[600px] gap-4 rounded-md bg-[#EFEFEF] p-4">
-              <div className="flex-shrink-0">
-                <Image
-                  src={post.x_gravatar}
-                  alt={''}
-                  className="rounded-full"
-                  width={100}
-                  height={100}
-                />{' '}
-              </div>
-              <div className="col-span-8">
-                <p className=" text-xl font-bold"> {post.x_author}</p>
-                <p className="my-2">{post.author_description}</p>
-              </div>
-            </div>
+            <AuthorDetails post={post} />
+            <Comment />
           </div>
           <div className="w-full lg:col-span-4">
-            <h5 className="font-newsreader mb-8 text-3xl font-bold text-[#166AB4]">
-              We'd love to hear from you!
-            </h5>
-            <form className="    font-semibold">
-              <div className="grid gap-8  lg:grid-cols-2">
-                <div>
-                  <label htmlFor="">Name *</label>
-                  <input
-                    placeholder="Name"
-                    className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="">Email *</label>
-                  <input
-                    placeholder="Email"
-                    type="email"
-                    className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none"
-                  />
-                </div>
-              </div>
-              <div className="mt-3 grid grid-cols-2 gap-8">
-                <div>
-                  <label htmlFor="">Country Code *</label>
-                  <input
-                    placeholder="Code"
-                    className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="">Mobile No. *</label>
-                  <input
-                    placeholder="Enter Your Number"
-                    type="email"
-                    className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none"
-                  />
-                </div>
-              </div>
-              <div className="mt-3  gap-3">
-                <div className="grid">
-                  <label htmlFor="">What You Want To Know? *</label>
-                  <select className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none">
-                    <option value="Integral Healing Package">
-                      Integral Healing Package
-                    </option>
-                    <option value="Aura and Chakra Healing">
-                      Aura and Chakra Healing
-                    </option>
-                    <option value="Reiki Healing">Reiki Healing</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div className="mt-3  gap-3">
-                <div className="grid">
-                  <label htmlFor="">Message *</label>
-                  <textarea className="mt-2 rounded-lg border bg-[#F1F1F1] px-4 py-2 outline-none" />
-                </div>
-              </div>
-              <button className="my-4 rounded-lg bg-[#166AB4] px-4 py-2 text-white outline-none">
-                Send Message
-              </button>
-            </form>
+            <HearFromUsForm />
+            <TabsSidebar
+              details={{
+                latest: post.latest_posts,
+                popular: post.latest_posts,
+                trending: post.latest_posts,
+              }}
+            />
           </div>
         </div>
       </div>

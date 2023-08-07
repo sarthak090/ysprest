@@ -3,16 +3,9 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { name, healer_details, message, phone_no, healing_service } =
-        req.body;
+      const { name, email, contact, code, page_url } = req.body;
 
-      if (
-        !name ||
-        !healer_details ||
-        !message ||
-        !phone_no ||
-        !healing_service
-      ) {
+      if (!name || !email || !code || !contact || !page_url) {
         return res.status(404).send({ message: 'ALL fields Are required' });
       }
       // Create a Nodemailer transporter using your email service provider's SMTP settings
@@ -33,23 +26,22 @@ export default async function handler(req, res) {
       const mailOptions = {
         from: 'sarthak95063@gmail.com',
         to: 'mandar@parikhinfosolutions.com',
-        subject: `New Email for Healer ${healer_details?.name} `,
+        subject: `New Email for Magzine   `,
         text: `
         Hi,
 
-        There is a new request for healer ${healer_details?.name} enquiry  on Your Spiritual Revolution website.
-
-          Name: ${name}
-          Phone: ${phone_no}
-          Healing Sevice: ${healing_service}
-          Message: ${message}
+ 
+        Full Name: ${name}
+        Email Address: ${email}
+        Contact Number: ${contact}
+        Page URL: ${page_url}
         `,
       };
 
       // Send the email
-      const info = await transporter.sendMail(mailOptions);
+      // const info = await transporter.sendMail(mailOptions);
 
-      console.log('Message sent:', info.messageId);
+      // console.log('Message sent:', info.messageId);
 
       res.status(200).json({ message: 'Email sent successfully', mailOptions });
     } catch (error) {

@@ -11,6 +11,7 @@ import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 import Benefits from '@/components/healingServices/distance-pranic-healing/Benefits';
 import YTEmbed from '@/components/home/YTEmbed';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 function DistanePanicHealing(props: any) {
   const { product } = props;
   const { addItemToCart, isInCart } = useCart();
@@ -260,23 +261,15 @@ function DistanePanicHealing(props: any) {
             </div>
           </div>
         </section>
+
+        <CartCounterButton />
         <section className="2xl:px-52">
           <p className="text-center text-[24px] font-semibold text-[#616AB4]">
             Frequently Asked Questions
           </p>
           <div className="py-4">
-            <div className="grid grid-cols-2">
-              <Accordion
-                items={[
-                  {
-                    content: `Dynamic Healer SWipper Will Go Here
-              `,
-                    title: `Dynamic Healer SWipper Will Go Here
-              `,
-                  },
-                ]}
-                translatorNS="en"
-              />
+            <div className="grid gap-4 md:grid-cols-1">
+              <Accordion items={faqs} translatorNS="en" />
             </div>
           </div>
         </section>
@@ -334,6 +327,62 @@ function DistanePanicHealing(props: any) {
     </>
   );
 }
+const faqs = [
+  {
+    title: `How will Remote/Distance Healing work?
+  `,
+
+    content: `Distance Healing can be explained by phenomena of Quantum Entanglement as an alternative healing therapy to overcome physical, mental, and emotional imbalances. Quantum entanglement discovered by Schrödinger is one of the most significant discoveries of modern science. It states that we all are particles in the universe, entangled together with strong force.
+
+\n\n    Thus, even if we are separated by distance, we are connected and can affect each other’s actions. Albert Einstein quoted this phenomenon as “spooky action at a distance.”
+    
+\n\n This interconnection is referred to as ‘Oneness,’ the state of being one. The healers & practitioners, with their expertise, access this unified field of energy & activate the connection. They can alter your energy body with positive vibrations to attract abundance, overcome illness, and improve immunity. The various modalities can help in Integral Healing even at a remote distance.
+
+  `,
+  },
+  {
+    title: `What details do i need to share with you?`,
+    content: `We will need your personal details like Name, Photo and Date, Place, and Time of Birth.
+
+
+      `,
+  },
+  {
+    title: `What is the source of Pranic Healing?`,
+    content: `The main sources of pranic healing are energy derived from the sun, wind & ground. It uses the prana energy from the sun, wind & the ground to heal the physical ailments & emotional imbalances.
+
+
+
+
+      `,
+  },
+  {
+    title: `What are the various modes of payment available?`,
+    content: `We accept payment by credit cards/debit cards/net banking (for Indian customers) and PayPal (for international customers).
+
+
+
+      `,
+  },
+  {
+    title: `Is it available in my Country?`,
+    content: `The programs are available to anyone and everyone around the world. Register to know more about the availability of services.
+
+
+
+
+      `,
+  },
+  {
+    title: `Can I purchase this for my friends and family?`,
+    content: `Yes, you can. All you need to do is share the mentioned details with us.
+
+
+
+
+      `,
+  },
+];
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
 

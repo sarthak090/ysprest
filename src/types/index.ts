@@ -380,7 +380,12 @@ export interface VerifyCouponResponse {
   is_valid: boolean;
   coupon?: Coupon;
 }
-
+export interface MagzineDownloadInput {
+  email: string;
+  name: string;
+  contact: string;
+  code: string;
+}
 export interface CreateReviewInput {
   product_id: string;
   shop_id: string;

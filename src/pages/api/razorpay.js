@@ -33,11 +33,13 @@ async function handler(req, res) {
     },
   }).then((r) => r.json());
 
-  const subTotal = percentage(95, calculateTotal(data));
+  const subTotal = body.input.total;
   const amount = subTotal * 100; // amount in paisa. In our case it's INR 1
   const currency = 'INR';
+  console.log({ amount, subTotal });
+
   const options = {
-    amount: amount.toString(),
+    amount: Math.round(amount),
     currency,
     receipt: shortid.generate(),
 
@@ -47,8 +49,13 @@ async function handler(req, res) {
       products_id: JSON.stringify(items),
     },
   };
-  const paymentResp = await razorpay.orders.create(options);
-  res.send(paymentResp);
+  try {
+    const paymentResp = await razorpay.orders.create(options);
+    res.send(paymentResp);
+  } catch (err) {
+    console.log(err);
+    res.send({ message: 'Not Working Please Try Again' });
+  }
 }
 
 function calculateTotal(data) {

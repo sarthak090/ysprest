@@ -64,7 +64,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
     },
     Number(discount)
   );
-  const makeRazorPayment = async (productId: any) => {
+  const makeRazorPayment = async (productId: any, input: any) => {
     // Make API call to the serverless API
 
     const data = await fetch('/api/razorpay', {
@@ -72,8 +72,9 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       headers: {
         // Authorization: 'YOUR_AUTH_HERE'
       },
-      body: JSON.stringify({ items: productId }),
+      body: JSON.stringify({ items: productId, input }),
     }).then((t) => t.json());
+    console.log({ data });
     const options = {
       name: data.name,
       currency: data.currency,
@@ -103,23 +104,6 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   };
 
   const handlePlaceOrder = () => {
-    if (!customer_contact) {
-      setErrorMessage('Contact Number Is Required');
-      return;
-    }
-    if (!use_wallet_points && !payment_gateway) {
-      setErrorMessage('Gateway Is Required');
-      return;
-    }
-
-    if (payment_gateway === 'RAZORPAY') {
-      const products_id = available_items?.map((item) =>
-        formatOrderedProduct(item)
-      );
-
-      makeRazorPayment(products_id);
-    }
-
     let input = {
       //@ts-ignore
       products: available_items?.map((item) => formatOrderedProduct(item)),
@@ -142,12 +126,28 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
         ...(shipping_address?.address && shipping_address.address),
       },
     };
+    if (!customer_contact) {
+      setErrorMessage('Contact Number Is Required');
+      return;
+    }
+    if (!use_wallet_points && !payment_gateway) {
+      setErrorMessage('Gateway Is Required');
+      return;
+    }
+
+    if (payment_gateway === 'RAZORPAY') {
+      const products_id = available_items?.map((item) =>
+        formatOrderedProduct(item)
+      );
+
+      makeRazorPayment(products_id, input);
+    }
 
     delete input.billing_address.__typename;
     delete input.shipping_address.__typename;
 
     //@ts-ignore
-    sendOrder(generateDataForWOOCommerce(input));
+    // sendOrder(generateDataForWOOCommerce(input));
     // (generateDataForWOOCommerce(input));
     // createOrder(input);
   };

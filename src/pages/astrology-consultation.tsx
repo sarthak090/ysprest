@@ -7,6 +7,9 @@ import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import { useCart } from '@/store/quick-cart/cart.context';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import IssuesPoint from '@/components/healingServices/astrology-consultation/issues-point';
+import { Astrologybenefits } from '@/components/healingServices/astrology-consultation/benefits';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 function AstrologyConsultation(props: any) {
   const { product } = props;
   const { addItemToCart, isInCart } = useCart();
@@ -20,6 +23,7 @@ function AstrologyConsultation(props: any) {
   };
   return (
     <div className="bg-white">
+      <CartCounterButton />
       <SeoByRankMath {...props.seoData} />
       <section className="grid bg-[#FAFAFA] py-8 2xl:px-52">
         <div>
@@ -76,23 +80,7 @@ function AstrologyConsultation(props: any) {
           <p className="my-8 text-[30px] font-semibold text-darkBlue">
             What issues can gemstone astrology consultation resolve?
           </p>
-          <ul>
-            <li className="flex gap-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="h-6 w-6 text-darkBlue"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <p>Career, professional issues</p>
-            </li>
-          </ul>
+          <IssuesPoint />
         </div>
         <div>
           <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Astrology-Consultation-Uses.jpg" />
@@ -110,34 +98,7 @@ function AstrologyConsultation(props: any) {
           imbalances
           <div className="my-8 grid grid-cols-2">
             <div className="py-8">
-              <ul className="flex flex-col items-start justify-center">
-                <li className="flex gap-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 37.19 23.418"
-                  >
-                    <g id="checkmark" transform="translate(-1.81 24.418)">
-                      <path
-                        id="Path_12792"
-                        data-name="Path 12792"
-                        d="M18.5-16.9c-6.4,7.3-7,7.8-8.9,6.5-6-3.8-6.6-4-7.6-3-.7.7.5,2.6,4.1,6.3,4.3,4.2,5.5,4.9,6.5,3.9C15.3-6,26.8-24,26.1-24.4,25.7-24.7,22.3-21.3,18.5-16.9Z"
-                        fill="#0a2d4d"
-                      ></path>
-                      <path
-                        id="Path_12793"
-                        data-name="Path 12793"
-                        d="M31.1-16.5c-5.6,6.6-6.5,7.3-8.3,6.4-1.6-.8-2.3-.8-2.9.2-1.4,2.2-1.1,3.4,1.9,6.2L24.6-1l7.2-10.9c4-6,7.2-11.1,7.2-11.5C39-25.1,36.9-23.3,31.1-16.5Z"
-                        fill="#0a2d4d"
-                      ></path>
-                    </g>
-                  </svg>
-                  <p className="text-left">
-                    Predicts pains & sickness based on the movements of
-                    celestial bodies.
-                  </p>
-                </li>
-              </ul>
+              <Astrologybenefits />
             </div>
             <div className="flex justify-end">
               <img
@@ -282,12 +243,15 @@ function AstrologyConsultation(props: any) {
       </section>
       <section className="bg-white py-16 2xl:px-52">
         <div className="grid grid-cols-2 gap-16">
-          <div className="text-[24px] font-semibold text-darkBlue">
-            Let the power of crystals & gemstones release the blockages, heal
-            the imbalances and pave the way for prosperity & wellbeing.
+          <div className="flex items-center justify-start">
+            <div className="text-[30px] font-semibold text-darkBlue">
+              Let the power of crystals & gemstones release the blockages, heal
+              the imbalances and pave the way for prosperity & wellbeing.
+            </div>
           </div>
+
           <div
-            className="rounded-2xl bg-bgBlue px-8 py-6
+            className="rounded-2xl bg-bgBlue px-8 py-6 shadow-2xl
           "
           >
             <div className="grid gap-6">
@@ -315,14 +279,40 @@ function AstrologyConsultation(props: any) {
         <p className="my-6 text-center text-[30px] font-semibold text-darkBlue">
           Frequently Asked Questions
         </p>
-        <Accordion
-          items={[{ content: `kls`, title: 'jkksd' }]}
-          translatorNS="en"
-        />
+        <Accordion items={faqs} translatorNS="en" />
       </section>
     </div>
   );
 }
+const faqs = [
+  {
+    title: `Is it available in my country?`,
+    content: `The programs are available to anyone and everyone around the world. Register to know more about the availability of services.
+
+
+    `,
+  },
+
+  {
+    title: `What details do I need to share with you?`,
+    content: `We will need your personal details like Name, Photo and Date, Place, and Time of Birth.
+
+
+
+
+    `,
+  },
+  {
+    title: `What are the various modes of payment?`,
+    content: `We accept payment by credit cards/debit cards/net banking (for Indian customers) and PayPal (for international customers).
+
+
+
+
+
+    `,
+  },
+];
 
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;

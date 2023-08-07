@@ -99,28 +99,28 @@ const LinkExchangeSubmittionForm = () => {
             />
           </div>
           <Input
-            label={`Last Name`}
+            label={`Last Name *`}
             {...register('last_name')}
             variant="outline"
             className=" my-6 !text-white"
             error={t(errors.last_name?.message!)}
           />
           <Input
-            label={`Company Name            `}
+            label={`Company Name *            `}
             {...register('company_name')}
             variant="outline"
             className="my-6 !text-white"
             error={t(errors.company_name?.message!)}
           />
           <Input
-            label={`Email Address`}
+            label={`Email Address *`}
             {...register('email_address')}
             variant="outline"
             className="my-6 !text-white"
             error={t(errors.email_address?.message!)}
           />
           <Input
-            label={`Mobile No`}
+            label={`Mobile No *`}
             {...register('phone_number')}
             variant="outline"
             className="my-6 !text-white"
@@ -128,7 +128,7 @@ const LinkExchangeSubmittionForm = () => {
           />
 
           <div {...register('post_categories')}>
-            <label htmlFor="">Post Category </label>
+            <label htmlFor="">Post Category * </label>
             <select required className="mt-3 w-full">
               {categories.map((service: any) => (
                 <option>{service}</option>
@@ -138,14 +138,14 @@ const LinkExchangeSubmittionForm = () => {
           <div className="my-6 grid">
             <label htmlFor="" className="mb-2">
               {' '}
-              Upload Article
+              Upload Article *
             </label>
             <input type="file" {...register('uploaded_article_file_link')} />
           </div>
 
           <div className="my-6">
             <label htmlFor="">
-              Post Content
+              Post Content *
               <span className="ml-2 text-xs">
                 (The article can be up to 500-600 words){' '}
               </span>
@@ -160,7 +160,7 @@ const LinkExchangeSubmittionForm = () => {
 
           <div className="my-6 mt-16 grid">
             <label className="mb-2">
-              Profile Picture
+              Profile Picture *
               <span className="ml-2 text-xs">
                 {' '}
                 (Only jpg, png & webp files are allowed.)
@@ -170,33 +170,35 @@ const LinkExchangeSubmittionForm = () => {
           </div>
 
           <TextArea
-            label={`Author Bio (Bio can be up to 50-70 words) `}
+            label={`Author Bio * (Bio can be up to 50-70 words) `}
             {...register('author_bio')}
             variant="outline"
             className="my-6 text-white"
             error={t(errors.author_bio?.message!)}
           />
           <Input
-            label={`Keyword`}
+            label={`Keyword *`}
             {...register('keyword')}
             variant="outline"
             className="my-6 text-white"
             error={t(errors.keyword?.message!)}
           />
           <Input
-            label={`URL`}
+            label={`URL *`}
             {...register('url')}
             variant="outline"
             className="my-6 text-white"
             error={t(errors.url?.message!)}
           />
-          <Button
-            className="mb-4 w-full bg-black text-white"
-            loading={false}
-            disabled={false}
-          >
-            {t('text-submit')}
-          </Button>
+          <div className="flex justify-center">
+            <Button
+              className="mb-4   bg-black text-white"
+              loading={false}
+              disabled={false}
+            >
+              {t('text-submit')}
+            </Button>
+          </div>
 
           {/* <div className="grid grid-cols-1  ">
             

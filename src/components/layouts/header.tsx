@@ -2,15 +2,16 @@ import Logo from '@/components/ui/logo';
 import cn from 'classnames';
 import StaticMenu from './menu/static-menu';
 import { useAtom } from 'jotai';
-import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import { authorizationAtom } from '@/store/authorization-atom';
 import { useIsHomePage } from '@/lib/use-is-homepage';
 import { useMemo } from 'react';
-import GroupsDropdownMenu from './menu/groups-menu';
 import { useHeaderSearch } from '@/layouts/headers/header-search-atom';
 import LanguageSwitcher from '@/components/ui/language-switcher';
+import { useCart } from '@/store/quick-cart/cart.context';
+import usePrice from '@/lib/use-price';
+import Link from 'next/link';
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 const AuthorizedMenu = dynamic(() => import('./menu/authorized-menu'), {
@@ -20,6 +21,10 @@ const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 
 const Header = ({ layout }: { layout?: string }) => {
   const { t } = useTranslation('common');
+  const { totalUniqueItems, total } = useCart();
+  const { price: totalPrice } = usePrice({
+    amount: total,
+  });
   const { show, hideHeaderSearch } = useHeaderSearch();
   // const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const [isAuthorize] = useAtom(authorizationAtom);
@@ -44,17 +49,57 @@ const Header = ({ layout }: { layout?: string }) => {
       })}
     >
       <div className="fixed z-[60] w-full bg-[#166AB4] px-8 py-2 ">
-        <div className="flex gap-2 text-white">
-          <div>
-            <a href="tel:+918591706800">+91- 8591706800</a>
+        <div className="flex justify-between">
+          <div className="flex gap-2 text-white">
+            <div>
+              <a href="tel:+918591706800">+91- 8591706800</a>
+            </div>
+            <div>
+              <a href="mailto:amitt@YourSpiritualRevolution.org">
+                | amitt@YourSpiritualRevolution.org
+              </a>
+            </div>
           </div>
-          <div>
-            <a href="mailto:amitt@YourSpiritualRevolution.org">
-              | amitt@YourSpiritualRevolution.org
-            </a>
+          <div className="flex items-center gap-2">
+            <div className="flex gap-8 text-white">
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                  />
+                </svg>
+                <Link href={'/profile'}>Login</Link>
+              </div>
+              <div className="flex items-center gap-2">
+                <Link href={'/cart'}>My Cart </Link> -{' '}
+                <span className=" ml-2">{totalPrice}</span>{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
-        <div></div>
       </div>
       <div
         className={cn(

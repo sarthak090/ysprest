@@ -8,9 +8,9 @@ const Logo: React.FC<React.AnchorHTMLAttributes<{}>> = ({
 }) => {
   return (
     <Link href="/" className={cn('inline-flex', className)} {...props}>
-      <span className="relative h-10 w-32 overflow-hidden md:w-40">
+      <span className="relative h-10 w-32 overflow-hidden md:w-60">
         <Image
-          src={'/img/logo.png'}
+          src={'/img/ysr-Logo.png'}
           alt={'yourspiritualrevolution Logo'}
           layout="fill"
           objectFit="contain"

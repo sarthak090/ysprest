@@ -1,4 +1,3 @@
-import Healers from '@/components/healingServices/Healers';
 import PricingBanner from '@/components/healingServices/PricingBanner';
 import Processes from '@/components/healingServices/Processes';
 import StillHaveQuery from '@/components/healingServices/Query';
@@ -12,6 +11,7 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const productUrl =
@@ -99,6 +99,7 @@ function AuraChakraHealing(props: any) {
           </section>
         </section>
       </section>
+      <CartCounterButton />
 
       <section className="mx-auto w-full max-w-1920 bg-white   px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-52">
         <div className="grid gap-8 md:grid-cols-2">
@@ -266,9 +267,7 @@ function AuraChakraHealing(props: any) {
         <div className="my-8 grid gap-6 md:grid-cols-3">
           <Processes processes={processes} />
         </div>
-        <div className="grid justify-center gap-8">
-          <Testimonials />
-        </div>
+
         <div className="flex justify-center">
           <img
             src="https://yourspiritualrevolution.org/wp-content/uploads/2021/12/Before-after.jpg"
@@ -276,13 +275,15 @@ function AuraChakraHealing(props: any) {
             height={500}
           />
         </div>
+        <div className="grid justify-center gap-8">
+          <Testimonials />
+        </div>
       </div>
 
       <section className="my-8">
         <div className="my-6 py-6 text-center text-[25px] font-semibold">
           <p className="text-[34px]">
-            Find the right energy & balance for your life with <br />{' '}
-            spiritually enlightening vibrational frequencies
+            Reset, Revive, and Re-Energize your soul with Aura & Chakra Healing
           </p>
         </div>
         <PricingBanner onClick={buyNowClickHandler} {...pricingData} />
@@ -292,7 +293,7 @@ function AuraChakraHealing(props: any) {
           Frequently Asked Questions
         </p>
         <div className="py-4">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-1">
             <Accordion items={faqs} translatorNS="en" />
           </div>
         </div>
@@ -376,14 +377,18 @@ const processes = [
 ];
 const pricingData = {
   img_src:
-    'https://yourspiritualrevolution.org/wp-content/uploads/2021/12/distance-pranic-healing.jpg',
+    'https://yourspiritualrevolution.org/wp-content/uploads/2022/01/distance-aura-chakra-card.jpg',
   data: {
-    title: `    Distance Pranic Healing`,
-    sub_title: `            Connect with your inner-self through Pranic Healing.
+    title: `   Distance Aura & Chakra Healing
+    `,
+    sub_title: `   Reset, Revive, and Re-Energize your soul
+    with Aura & Chakra Healing.
 `,
-    session: `            Powerful Healing for 7 days (7 Sessions)
+    session: `      Powerful Healing for 1 Session
+
 `,
-    price: `            Price: ₹7,999 (Incl. GST) / US $129
+    price: `            Price: ₹3,999 (Incl. GST) / US $79
+
 `,
   },
 };

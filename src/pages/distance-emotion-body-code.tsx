@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 import Accordion from '@/components/ui/accordion';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 const benefits = [
   `Body & emotion code has proven effective in reducing chronic pain like neck pain, back pain, knee pain, etc.
 
@@ -206,16 +207,12 @@ function DistanceEmotionbodyCode(props: any) {
           </p>
         </section>
       </section>
+      <CartCounterButton />
       <section className="2xl:px-52">
         <p className="text-center text-[38px] font-semibold text-darkBlue">
-          Benefits of Distance Aura & Chakra Healing
+          Benefits of Emotion Code and Body Code
         </p>
-        <p className="my-6 text-center text-[19px]">
-          Your Spiritual Revolution offers a combined package of Aura & Chakra
-          cleansing that aims to eliminate all the blockages from your aura &
-          chakra. It is designed as a well-balanced holistic method that will
-          serve you innumerable benefits like.
-        </p>
+
         <section className=" ">
           <div className="grid gap-5 md:grid-cols-12">
             <div className="md:col-span-4">
@@ -227,7 +224,7 @@ function DistanceEmotionbodyCode(props: any) {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
-                    className="h-6 w-6"
+                    className="h-6 w-6 flex-shrink-0"
                     viewBox="0 0 109 109"
                   >
                     <defs>
@@ -276,8 +273,31 @@ function DistanceEmotionbodyCode(props: any) {
           Frequently Asked Questions
         </p>
         <div className="py-4">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-1">
             <Accordion items={faqs} translatorNS="en" />
+          </div>
+        </div>
+      </section>
+      <section
+        style={{
+          background: `url("https://yourspiritualrevolution.org/wp-content/uploads/2022/01/Emotion-Body-Code-Banner-Image.jpg")`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: '100%',
+        }}
+        className="  !container   flex min-h-[430px] items-center justify-center !bg-cover !bg-center !bg-no-repeat py-16  pb-0"
+      >
+        <div className="grid gap-8">
+          <p className="text-[30px] font-semibold    text-dark">
+            Balance your emotions and improve your well-being with distance
+            healing
+          </p>
+          <div className="flex justify-center">
+            <SmoothScrollLink to="buynow">
+              <button className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall">
+                Get Started Today!{' '}
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
       </section>

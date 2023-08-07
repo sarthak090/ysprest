@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         secure: true, // Set to true if your SMTP provider requires a secure connection
         auth: {
           user: 'apikey',
-          pass: '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',
+          pass: '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',
         },
         tls: {
           rejectUnauthorized: false,

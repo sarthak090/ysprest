@@ -8,13 +8,15 @@ import { useCart } from '@/store/quick-cart/cart.context';
 import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
+import WaveBenefits from '@/components/healingServices/the-wave-of-fortune-lifeline-activation/wave-benefits';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-lama-fera-healing`;
   const seoData = await fetch(seoURL).then((r) => r.json());
   const productUrl =
     process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
-    `products/gemstone-astrology-consultation`;
+    `products/wave-of-fortune-lifeline-activation`;
   const product = await fetch(productUrl).then((r) => r.json());
   return {
     props: {
@@ -147,25 +149,7 @@ function Thewaveoffortunelifelineactivation(props: any) {
               <img src="https://yourspiritualrevolution.org/wp-content/uploads/2022/12/Fortune-Lifeline-Activation-Benefits-Image.jpg" />
             </div>
             <div>
-              <div className="flex items-center gap-4 font-semibold ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  strokeWidth={2}
-                  className="h-8 w-8 "
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <p className="text-[18px]">
-                  Open your subconscious mind to the possibilities of fortune
-                  and luck
-                </p>
-              </div>
+              <WaveBenefits />
             </div>
           </div>
           <p className="my-4 text-[18px]">
@@ -228,17 +212,56 @@ function Thewaveoffortunelifelineactivation(props: any) {
           </div>
         </div>
       </div>
+
+      <CartCounterButton />
       <section className="bg-white 2xl:px-52">
         <p className="my-6 text-center text-[30px] font-semibold text-darkBlue">
           Frequently Asked Questions
         </p>
-        <Accordion
-          items={[{ content: `kls`, title: 'jkksd' }]}
-          translatorNS="en"
-        />
+        <Accordion items={faqs} translatorNS="en" />
       </section>
     </div>
   );
 }
+const faqs = [
+  {
+    title: `Q. How will The Wave of Fortune Lifeline Activation Healing take place?
+
+    `,
+    content: `A. Our healer will initiate distance healing and activate your golden lifelines. You will be connected via email and get all the details in the report post the healing session.
+
+    `,
+  },
+  {
+    title: `Q. What details do I need to share with you?
+
+    `,
+    content: `A. The healers will need your personal details like your Full Name and a Photograph.
+
+
+    `,
+  },
+  {
+    title: `Q. How will Remote/Distance Healing work?
+
+    `,
+    content: `A. Distance Healing can be explained by the phenomena of Quantum Entanglement as an alternative healing therapy to overcome physical, mental, and emotional imbalances. Quantum entanglement discovered by Schrödinger is one of the most significant discoveries of modern science. It states that we all are particles in the universe, entangled together with strong force. Thus, even if we are separated by distance, we are connected and can affect each other’s actions. Albert Einstein quoted this phenomenon as “spooky action at a distance.”
+
+    This interconnection is referred to as ‘Oneness,’ the state of being one. The healers & practitioners, with their expertise, access this unified field of energy & activate the connection. They can alter your energy body with positive vibrations to attract abundance, overcome illness, and improve immunity. The various modalities can help in Integral Healing even at a remote distance.
+
+
+    `,
+  },
+
+  {
+    title: `Q. When will I get my report?
+
+    `,
+    content: `A. You will receive a detailed report mentioned with all the information within one week.
+
+
+    `,
+  },
+];
 Thewaveoffortunelifelineactivation.getLayout = getLayout;
 export default Thewaveoffortunelifelineactivation;

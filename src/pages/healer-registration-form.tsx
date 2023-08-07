@@ -5,6 +5,7 @@ import SeoByRankMath from '@/components/products/SEO';
 import PaidPostSubmittion from '@/components/settings/paid-post-form';
 import HealerRegistrationForm from '@/components/settings/healer-registration-form';
 import Logo from '@/components/ui/logo';
+import Image from 'next/image';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
   const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/healer-registration-form`;
@@ -24,15 +25,32 @@ function Submitguestpost(props: any) {
   return (
     <>
       <SeoByRankMath {...props.seoData} />
-      <div className="mx-auto w-full max-w-1920 bg-white px-4 lg:px-32 xl:px-64  ">
-        <div className="my-6 flex justify-center">
-          <Logo />
-        </div>
-        <h1 className="my-8 text-center text-4xl font-bold">
-          HEALER REGISTRATION
-        </h1>
+      <div className="">
+        <div
+          style={{
+            backgroundColor: 'transparent',
+            backgroundImage: `linear-gradient(90deg, #053560 0%, #3f83be 100%);`,
+          }}
+          className=" p-3 lg:p-8"
+        >
+          <div className="mx-auto my-8 w-full max-w-1920  px-4 lg:px-32 xl:px-64  ">
+            <div className="rounded bg-white px-2 lg:p-8">
+              <div className=" flex justify-center">
+                <Image
+                  src={`https://yourspiritualrevolution.org/wp-content/uploads/2022/11/YSR-Logo-Featured-Image.png`}
+                  width={200}
+                  height={100}
+                  className="object-contain"
+                />
+              </div>
+              <h1 className="my-4 text-center text-4xl font-bold">
+                HEALER REGISTRATION
+              </h1>
 
-        <HealerRegistrationForm />
+              <HealerRegistrationForm />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

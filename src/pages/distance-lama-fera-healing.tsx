@@ -268,7 +268,12 @@ function DistanceLamaFeraHealing(props: any) {
           </div>
         </div>
       </section>
-      <section className="my-8 2xl:px-52">
+      <CartCounterButton />
+      <section className="my-16 2xl:px-52">
+        <p className="my-6 text-center font-semibold lg:text-3xl">
+          How will Distance Lama Fera Healing Session take place?
+        </p>
+
         <div className="grid grid-cols-3 ">
           <div className="flex flex-col items-center justify-center">
             <svg
@@ -662,23 +667,25 @@ function DistanceLamaFeraHealing(props: any) {
               Achieve A Sense Of Self-Awareness.
             </p>
             <div className="flex justify-start">
-              <button className="flex items-center gap-2 rounded-lg bg-white px-6 py-4 text-[18px] text-[#4F3838] ">
-                Get Started Today
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </button>
+              <SmoothScrollLink to="buynow">
+                <button className="flex items-center gap-2 rounded-lg bg-white px-6 py-4 text-[18px] text-[#4F3838] ">
+                  Get Started Today
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                    />
+                  </svg>
+                </button>
+              </SmoothScrollLink>
             </div>
           </div>
         </div>

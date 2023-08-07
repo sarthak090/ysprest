@@ -1,4 +1,5 @@
 import React from 'react';
+import SmoothScrollLink from '../ui/SmoothScrollLink';
 interface Props {
   img_src: string;
   data: {
@@ -25,7 +26,7 @@ function PricingBanner(props: Props) {
   };
   return (
     <>
-      <div id="buynow" className="grid px-2 lg:grid-cols-12 lg:px-32">
+      <div className="grid px-2 lg:grid-cols-12 lg:px-32">
         <div className="col-span-6 flex justify-center">
           <img
             src={props.img_src}
@@ -38,13 +39,14 @@ function PricingBanner(props: Props) {
           <p className="my-4 text-[20px]">{props.data.sub_title}</p>
           <p className="my-4 text-[18px]">{props.data.session}</p>
           <p className="my-4 text-[18px]">{props.data.price}</p>
-
-          <button
-            onClick={props.onClick}
-            className="my-4 w-2/3 rounded-full bg-[#166AB4] py-4 text-[20px] text-white"
-          >
-            Buy Now
-          </button>
+          <SmoothScrollLink to="buynow">
+            <button
+              // onClick={props.onClick}
+              className="my-4 w-2/3 rounded-full bg-[#166AB4] py-4 text-[20px] text-white"
+            >
+              Buy Now
+            </button>
+          </SmoothScrollLink>
         </div>
       </div>
     </>

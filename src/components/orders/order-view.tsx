@@ -46,10 +46,10 @@ function OrderView({ order, language }: any) {
   //@ts-ignore
   const shippingCharge = order?.shipping_lines.find(
     (s) => s.method_title == 'COD Charges'
-  ).total;
+  );
 
   const { price: shipping_charge } = usePrice({
-    amount: parseFloat(deliveryFee ? deliveryFee : shippingCharge) ?? 0,
+    amount: parseFloat(deliveryFee ? deliveryFee : shippingCharge?.total) ?? 0,
   });
   const taxRate = order?.tax_lines[0]?.tax_total;
 

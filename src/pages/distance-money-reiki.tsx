@@ -8,9 +8,10 @@ import { useRouter } from 'next/router';
 import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
 import SmoothScrollLink from '@/components/ui/SmoothScrollLink';
 import Accordion from '@/components/ui/accordion';
+import CartCounterButton from '@/components/cart/cart-counter-button';
 export const getStaticProps = async ({ locale }: any) => {
   const { NEXT_PUBLIC_CMS } = process.env;
-  const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-lama-fera-healing`;
+  const seoURL = `${NEXT_PUBLIC_CMS}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_CMS}/distance-money-reiki`;
   const seoData = await fetch(seoURL).then((r) => r.json());
   const productUrl =
     process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
@@ -131,6 +132,7 @@ function Distancemoneyreiki(props: any) {
           </p>
         </div>
       </section>
+      <CartCounterButton />
       <section className="grid grid-cols-2">
         <div id="learnmore" className="px-16">
           <div className="my-6 text-[40px] font-semibold">
@@ -181,20 +183,19 @@ function Distancemoneyreiki(props: any) {
           backgroundPosition: 'center',
           backgroundSize: '100%',
         }}
-        className="  flex   min-h-[300px] items-center justify-center  bg-no-repeat  pb-0"
+        className="  flex   min-h-[410px] items-center justify-center  bg-no-repeat  pb-0"
       >
         <div className="grid gap-8">
-          <p className="text-[30px] font-semibold    text-white">
+          <p className="text-center text-[30px] font-semibold    text-white">
             Don’t let negativity keep you away from your desires & success.
             Attract money & wealth abundance with Money Reiki now!
           </p>
           <div className="flex justify-center">
-            <button
-              onClick={buyNowClickHandler}
-              className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall"
-            >
-              Buy Now
-            </button>
+            <SmoothScrollLink to="buynow">
+              <button className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall">
+                Get Started
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
       </section>

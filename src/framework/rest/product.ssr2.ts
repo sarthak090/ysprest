@@ -16,7 +16,7 @@ type ParsedQueryParams = {
 export const getStaticPaths: GetStaticPaths = async () => {
   // Fetch the list of dynamic paths from an API or database
   const dynamicPaths = Categories.map((c) => c.slug);
-  const { data } = await client.products.all({ limit: 50 });
+  const { data } = await client.products.all({ limit: 10 });
 
   // Generate an array of path objects with the required params
   const paths = data.map((product) => ({

@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import PhoneInput from 'react-phone-input-2';
 import PhoneNumberForm from '../otp/phone-number-form';
 import { Controller } from 'react-hook-form';
+import CountryCode from '../ui/forms/country-code';
 
 const guestSubmittionFormSchema = yup.object().shape({
   first_name: yup.string().required('First name is required'),
@@ -91,13 +92,21 @@ const HealerRegistrationForm = () => {
             error={t(errors.last_name?.message!)}
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
-            <Input
+            {/* <Input
               label={`Country Code`}
               {...register('countryCode')}
               variant="outline"
               className="col-span-4 my-6"
               error={t(errors.countryCode?.message!)}
-            />
+            /> */}
+            <div className="  my-6 md:col-span-4">
+              <label htmlFor="">Country Code</label>
+              <CountryCode
+                onChange={() => register('countryCode')}
+                className="rounded border border-border-base py-3"
+              />
+            </div>
+
             <Input
               label={`Mobile Number `}
               {...register('mobileNumber')}
@@ -106,28 +115,7 @@ const HealerRegistrationForm = () => {
               error={t(errors.mobileNumber?.message!)}
             />
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
-            {/* <Input
-              label={`Country Code`}
-              {...register('countryCode')}
-              variant="outline"
-              className="col-span-4 my-6"
-              error={t(errors.countryCode?.message!)}
-            /> */}
-            <PhoneInput
-              country="in"
-              // inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base ltr:!border-r-0 rtl:!border-l-0 !rounded ltr:!rounded-r-none rtl:!rounded-l-none focus:!border-accent !h-12"
-              // dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
-            />
-            {/* <Input
-              label={` Whatsapp Number
-              `}
-              {...register('whatsappNumber')}
-              variant="outline"
-              className="col-span-8 my-6"
-              error={t(errors.whatsappNumber?.message!)}
-            /> */}
-          </div>
+
           <Input
             label={`Email Address`}
             {...register('email_address')}

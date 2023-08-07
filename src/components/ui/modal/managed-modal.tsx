@@ -47,6 +47,9 @@ const ProductVariation = dynamic(
 const ReviewImageModal = dynamic(
   () => import('@/components/reviews/review-image-modal')
 );
+const DownloadMagzineModal = dynamic(
+  () => import('@/components/blog/MagzineDownload')
+);
 
 const HealingPopup = dynamic(() => import('@/components/home/HealingPopup'));
 const ManagedModal = () => {
@@ -92,6 +95,9 @@ const ManagedModal = () => {
       )}
       {view === 'HOME_HEALING_POPUP' && <HealingPopup data={data} />}
       {view === 'REVIEW_IMAGE_POPOVER' && <ReviewImageModal />}
+      {view === 'DOWNLOAD_MAGZINE_MODAL' && (
+        <DownloadMagzineModal bookLink={data} />
+      )}
     </Modal>
   );
 };

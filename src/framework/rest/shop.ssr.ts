@@ -17,7 +17,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   locales,
 }) => {
   invariant(locales, 'locales is not defined');
-  const { data } = await client.shops.all({ limit: 100, is_active: 1 });
+  const { data } = await client.shops.all({ limit: 10, is_active: 1 });
   const paths = data?.flatMap((shop) =>
     locales?.map((locale) => ({ params: { slug: shop.slug }, locale }))
   );
@@ -47,7 +47,10 @@ export const getStaticProps: GetStaticProps<
   try {
     const shop = await client.shops.get(slug);
     await queryClient.prefetchInfiniteQuery(
-      [API_ENDPOINTS.PRODUCTS, { limit: PRODUCTS_PER_PAGE, shop_id: shop.id, language: locale }],
+      [
+        API_ENDPOINTS.PRODUCTS,
+        { limit: PRODUCTS_PER_PAGE, shop_id: shop.id, language: locale },
+      ],
       ({ queryKey }) => client.products.all(queryKey[1] as ProductQueryOptions)
     );
     return {

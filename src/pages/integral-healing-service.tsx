@@ -146,7 +146,7 @@ function IntegralHealing(props: any) {
           Frequently Asked Questions
         </p>
         <div className="py-4">
-          <div className="grid gap-2 md:grid-cols-2">
+          <div className="grid gap-2 md:grid-cols-1">
             <Accordion items={[...faqs]} translatorNS="en" />
           </div>
         </div>

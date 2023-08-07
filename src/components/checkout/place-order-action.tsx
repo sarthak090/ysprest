@@ -74,7 +74,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       },
       body: JSON.stringify({ items: productId, input }),
     }).then((t) => t.json());
-    console.log({ data });
+
     const options = {
       name: data.name,
       currency: data.currency,
@@ -141,15 +141,15 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       );
 
       makeRazorPayment(products_id, input);
+    } else {
+      //@ts-ignore
+      sendOrder(generateDataForWOOCommerce(input));
+      // (generateDataForWOOCommerce(input));
+      // createOrder(input);
     }
 
     delete input.billing_address.__typename;
     delete input.shipping_address.__typename;
-
-    //@ts-ignore
-    // sendOrder(generateDataForWOOCommerce(input));
-    // (generateDataForWOOCommerce(input));
-    // createOrder(input);
   };
 
   function sendOrder(data: any) {

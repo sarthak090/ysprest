@@ -87,7 +87,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
         shipping_charge: 0,
         discount: percentage(5, base_amount),
       };
-      console.log({ data });
+
       //@ts-ignore
       // setVerifiedResponse(data);
     }

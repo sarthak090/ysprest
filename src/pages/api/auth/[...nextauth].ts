@@ -6,11 +6,11 @@ import GoogleProvider from 'next-auth/providers/google';
 export default NextAuth({
   // https://next-auth.js.org/configuration/providers
   providers: [
-    // GoogleProvider({
-    //   clientId:
-    //     '334029046406-ivq0adf1ipipgt22t1h06vh168923759.apps.googleusercontent.com',
-    //   clientSecret: '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',
-    // }),
+    GoogleProvider({
+      clientId:
+        '334029046406-ivq0adf1ipipgt22t1h06vh168923759.apps.googleusercontent.com',
+      clientSecret: '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',
+    }),
   ],
 
   secret: getEnv('SECRET'),

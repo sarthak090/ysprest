@@ -99,7 +99,7 @@ function Singleblog({ post, seoData }: any) {
             <p className="text-2xl font-semibold">About The Author</p>
 
             <AuthorDetails post={post} />
-            <Comment />
+            <Comment postId={post.id} />
           </div>
           <div className="w-full lg:col-span-4">
             <HearFromUsForm />

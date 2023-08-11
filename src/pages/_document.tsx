@@ -21,10 +21,6 @@ export default class CustomDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=optional"
             rel="stylesheet"
           />
-          <script
-            src="https://yourspiritualrevolution.org/wp-content/plugins/elementor/assets/js/frontend.min.js"
-            type="text/javascript"
-          ></script>
         </Head>
         <body>
           <Main />

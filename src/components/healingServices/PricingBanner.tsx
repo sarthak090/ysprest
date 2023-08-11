@@ -39,14 +39,14 @@ function PricingBanner(props: Props) {
           <p className="my-4 text-[20px]">{props.data.sub_title}</p>
           <p className="my-4 text-[18px]">{props.data.session}</p>
           <p className="my-4 text-[18px]">{props.data.price}</p>
-          <SmoothScrollLink to="buynow">
-            <button
-              // onClick={props.onClick}
-              className="my-4 w-2/3 rounded-full bg-[#166AB4] py-4 text-[20px] text-white"
-            >
-              Buy Now
-            </button>
-          </SmoothScrollLink>
+          {/* <SmoothScrollLink to="buynow"> */}
+          <button
+            onClick={props.onClick}
+            className="my-4 w-2/3 rounded-full bg-[#166AB4] py-4 text-[20px] text-white"
+          >
+            Buy Now
+          </button>
+          {/* </SmoothScrollLink> */}
         </div>
       </div>
     </>

@@ -6,6 +6,7 @@ import TextArea from '@/components/ui/forms/text-area';
 import { useContact } from '@/framework/user';
 import { useTranslation } from 'next-i18next';
 import * as yup from 'yup';
+import CountryCode from '../ui/forms/country-code';
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required('error-name-required'),
@@ -56,10 +57,7 @@ const ContactForm = () => {
           <div className="mt-3 grid grid-cols-2 gap-8">
             <div className="grid">
               <label htmlFor="">Country Code *</label>
-              <input
-                placeholder="Code"
-                className="mt-2 rounded-lg border   px-4 py-2 outline-none"
-              />
+              <CountryCode />
             </div>
             <div className="grid">
               <label htmlFor="">Mobile No. *</label>

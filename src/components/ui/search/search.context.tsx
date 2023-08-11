@@ -18,8 +18,8 @@ export const SearchProvider: FC = (props) => {
   const [searchTerm, updateSearchTerm] = useState('');
 
   useEffect(() => {
-    if (query?.text) {
-      updateSearchTerm(query?.text as string);
+    if (query?.name) {
+      updateSearchTerm(query?.name as string);
     } else {
       updateSearchTerm('');
     }

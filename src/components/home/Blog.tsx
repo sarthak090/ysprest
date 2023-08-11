@@ -49,27 +49,30 @@ export default function Blog(props: Props) {
         </div>
       </div>
       <div className="my-4 flex w-full gap-2 md:hidden">
-        <input
-          className="w-full rounded-lg border px-4 py-2 focus:outline-none "
-          placeholder="Search Blog By Name.."
-        />
-        <button className="flex items-center gap-2 rounded-md bg-black p-2 text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="h-4 w-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
-          Search
-        </button>
+        <form action="/blog/search" method="get">
+          <input
+            className="w-full rounded-lg border px-4 py-2 focus:outline-none "
+            placeholder="Search Blog By Name.."
+            name="s"
+          />
+          <button className="flex items-center gap-2 rounded-md bg-black p-2 text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-4 w-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+            Search
+          </button>
+        </form>
       </div>
       <section className="grid gap-4 md:grid-cols-2">
         <div>

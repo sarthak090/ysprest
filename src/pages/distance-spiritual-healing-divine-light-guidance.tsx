@@ -293,9 +293,11 @@ function DistaneSpritualHealing(props: any) {
             Healing & Divine Light Guidance
           </p>
           <div className="flex justify-center">
-            <button className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall">
-              Get Started
-            </button>
+            <SmoothScrollLink to="buynow">
+              <button className="rounded-lg bg-white px-10 py-4 text-[18px] font-semibold text-darkBlue shadow-downfall">
+                Get Started
+              </button>
+            </SmoothScrollLink>
           </div>
         </div>
       </section>

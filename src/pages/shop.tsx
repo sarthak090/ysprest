@@ -33,6 +33,7 @@ function Shop() {
   };
 
   const fetchUrl = async (url: string) => {
+    console.log('Running...', url);
     setIsLoading(true);
 
     try {
@@ -48,7 +49,7 @@ function Shop() {
     }
   };
   useEffect(() => {
-    if (searchText.length > 4) fetchInitial();
+    if (searchText.length > 2) fetchInitial();
   }, [searchText]);
   useEffect(() => {
     let url = process.env.NEXT_PUBLIC_WP_API + `/api/product-filter`;
@@ -60,7 +61,6 @@ function Shop() {
     if (queryString.length > 0) {
       url = url + `?${queryString}`;
     }
-
     fetchUrl(url);
   }, [router.query]);
   const addCategoriesToState = (isChecked: Boolean, cat_slug: string) => {
@@ -77,9 +77,12 @@ function Shop() {
       setSelectedCategories(removedCategories);
     }
   };
-  useEffect(() => {
-    fetchInitial();
-  }, []);
+  // useEffect(() => {
+
+  //   if (searchText.length == 0) {
+  //     fetchInitial();
+  //   }
+  // }, []);
   return (
     <div className="0 mx-auto w-full max-w-1920   bg-white px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-32">
       <h1 className="my-8 text-center text-3xl font-semibold">Shop</h1>

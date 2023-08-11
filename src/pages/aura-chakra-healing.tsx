@@ -286,7 +286,9 @@ function AuraChakraHealing(props: any) {
             Reset, Revive, and Re-Energize your soul with Aura & Chakra Healing
           </p>
         </div>
-        <PricingBanner onClick={buyNowClickHandler} {...pricingData} />
+        <div id="buynow">
+          <PricingBanner onClick={buyNowClickHandler} {...pricingData} />
+        </div>
       </section>
       <section className="2xl:px-52">
         <p className="text-center text-[24px] font-semibold text-[#616AB4]">

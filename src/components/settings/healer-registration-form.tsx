@@ -76,31 +76,25 @@ const HealerRegistrationForm = () => {
     >
       {({ register, formState: { errors } }) => (
         <>
-          <div className="grid grid-cols-1  ">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 ">
             <Input
-              label={`First Name`}
+              label={`First Name*`}
               {...register('first_name')}
               variant="outline"
               error={t(errors.first_name?.message!)}
             />
-          </div>
-          <Input
-            label={`Last Name`}
-            {...register('last_name')}
-            variant="outline"
-            className="my-6"
-            error={t(errors.last_name?.message!)}
-          />
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
-            {/* <Input
-              label={`Country Code`}
-              {...register('countryCode')}
+            <Input
+              label={`Last Name*`}
+              {...register('last_name')}
               variant="outline"
-              className="col-span-4 my-6"
-              error={t(errors.countryCode?.message!)}
-            /> */}
+              className=""
+              error={t(errors.last_name?.message!)}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
             <div className="  my-6 md:col-span-4">
-              <label htmlFor="">Country Code</label>
+              <label htmlFor="">Country Code*</label>
               <CountryCode
                 onChange={() => register('countryCode')}
                 className="rounded border border-border-base py-3"
@@ -108,7 +102,25 @@ const HealerRegistrationForm = () => {
             </div>
 
             <Input
-              label={`Mobile Number `}
+              label={`Mobile Number* `}
+              {...register('mobileNumber')}
+              variant="outline"
+              className="col-span-8 my-6"
+              error={t(errors.mobileNumber?.message!)}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 ">
+            <div className="  my-6 md:col-span-4">
+              <label htmlFor="">Country Code*</label>
+              <CountryCode
+                onChange={() => register('countryCode')}
+                className="rounded border border-border-base py-3"
+              />
+            </div>
+
+            <Input
+              label={`Whatsapp Number* `}
               {...register('mobileNumber')}
               variant="outline"
               className="col-span-8 my-6"
@@ -117,7 +129,7 @@ const HealerRegistrationForm = () => {
           </div>
 
           <Input
-            label={`Email Address`}
+            label={`Email Address*`}
             {...register('email_address')}
             variant="outline"
             className="my-6"
@@ -126,7 +138,7 @@ const HealerRegistrationForm = () => {
           <div className="my-6 grid">
             <label htmlFor="" className="mb-2">
               {' '}
-              Profile Picture
+              Profile Picture*
               <span className="ml-2 text-xs text-red-600">
                 (Only JPG & PNG format allowed with size upto 5MB)
               </span>
@@ -134,7 +146,7 @@ const HealerRegistrationForm = () => {
             <input type="file" {...register('uploaded_profile_picture_link')} />
           </div>
           <Input
-            label={`Country 
+            label={`Country *
             `}
             {...register('country')}
             variant="outline"
@@ -143,7 +155,7 @@ const HealerRegistrationForm = () => {
           />
 
           <Input
-            label={`State  
+            label={`State *
             `}
             {...register('state')}
             variant="outline"
@@ -152,14 +164,14 @@ const HealerRegistrationForm = () => {
           />
 
           <Input
-            label={`City   `}
+            label={`City *  `}
             {...register('city')}
             variant="outline"
             className="my-6"
             error={t(errors.city?.message!)}
           />
           <Input
-            label={`Address   `}
+            label={`Address *  `}
             {...register('address')}
             variant="outline"
             className="my-6"
@@ -167,7 +179,7 @@ const HealerRegistrationForm = () => {
           />
 
           <TextArea
-            label={`Short Bio
+            label={`Short Bio *
 
             `}
             {...register('shortBio')}

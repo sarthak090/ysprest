@@ -7,7 +7,6 @@ import {
 import { Image } from '@/components/ui/image';
 import { productPlaceholder } from '@/lib/placeholders';
 import Link from '@/components/ui/link';
-import { Routes } from '@/config/routes';
 import type { Banner } from '@/types';
 
 interface BannerProps {
@@ -31,7 +30,7 @@ const BannerWithPagination: React.FC<BannerProps> = ({ banners, slug }) => {
         thumbnail:
           'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/grocery-thumbnail.jpg',
       },
-      url: 'https://yourspiritualrevolution.org/shop/',
+      url: '/shop/',
       created_at: '2021-07-17T13:21:55.000000Z',
       updated_at: '2021-07-17T13:21:55.000000Z',
     },
@@ -48,7 +47,7 @@ const BannerWithPagination: React.FC<BannerProps> = ({ banners, slug }) => {
         thumbnail:
           'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/grocery-thumbnail.jpg',
       },
-      url: 'https://yourspiritualrevolution.org/integral-healing-service/',
+      url: '/integral-healing-service/',
       created_at: '2021-07-17T13:21:55.000000Z',
       updated_at: '2021-07-17T13:21:55.000000Z',
     },
@@ -97,7 +96,7 @@ const BannerWithPagination: React.FC<BannerProps> = ({ banners, slug }) => {
           >
             {_banners?.map((banner, idx) => (
               <SwiperSlide key={idx}>
-                <Link href={`/${slug}${Routes.search}`}>
+                <Link href={`${banner.url}`}>
                   <div className="relative   w-full md:max-h-[550px]">
                     <Image
                       className="h-full w-full object-cover"

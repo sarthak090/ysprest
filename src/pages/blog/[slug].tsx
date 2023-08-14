@@ -14,6 +14,7 @@ import Comment from '@/components/blog/Comment';
 import TabsSidebar from '@/components/blog/TabsSidebar';
 import EmbeddedPDF from '@/components/Embed/EmbedPdf';
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import Comments from '@/components/blog/Comments';
 
 function Singleblog({ post, seoData }: any) {
   if (post.excerpt.rendered.toString().includes('Download Magazine')) {
@@ -99,6 +100,7 @@ function Singleblog({ post, seoData }: any) {
             <p className="text-2xl font-semibold">About The Author</p>
 
             <AuthorDetails post={post} />
+            <Comments comments={post.comments} />
             <Comment postId={post.id} />
           </div>
           <div className="w-full lg:col-span-4">
@@ -161,6 +163,14 @@ export const getStaticProps: GetStaticProps = async ({
 
         postTosend.post.author_description = authorData.author.description;
         postTosend.post.latest_posts = latestPostData;
+        // postTosend.post.comments =
+        //   authorData.comments.length > 0
+        //     ? authorData.comments.filter(
+        //         (com: any) => com.comment_approved !== '1'
+        //       )
+        //     : [];
+
+        postTosend.post.comments = authorData.comments;
       } catch (err) {
         console.log(err);
       }

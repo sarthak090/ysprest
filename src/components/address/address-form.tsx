@@ -166,7 +166,6 @@ export function CheckoutFormAddress(props: any) {
   const { t } = useTranslation('common');
   const { addresses, type, userId } = props;
   const address = addresses[0] || {};
-  const { mutate: updateProfile } = useUpdateUser();
 
   function onSubmit(values: FormValues) {
     const formattedInput = {
@@ -178,12 +177,34 @@ export function CheckoutFormAddress(props: any) {
         ...values.address,
       },
     };
-    console.log(formattedInput);
 
-    updateProfile({
+    updateAddress({
       id: userId,
       address: [formattedInput],
     });
+  }
+  async function updateAddress({ id, address }: any) {
+    try {
+      const url =
+        process.env.NEXT_PUBLIC_REST_API_ENDPOINT +
+        `update-customer-address/${id}`;
+
+      const address_data = address[0].address;
+      address_data.postcode = address_data.zip;
+      address_data.address_1 = address_data.street_address;
+
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address_data: address_data }),
+      }).then((r) => r.json());
+
+      toast.success(resp);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -211,7 +232,6 @@ export function CheckoutFormAddressGuest(props: any) {
 
   const { t } = useTranslation('common');
   const { addresses, type, userId } = props;
-  console.log(props, selectedAddress);
   const address = addresses[0] || {};
 
   function onSubmit(values: FormValues) {

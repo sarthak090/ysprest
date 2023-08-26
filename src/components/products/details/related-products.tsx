@@ -5,30 +5,31 @@ interface Props {
   products: any;
   currentProductId: any;
   gridClassName?: string;
+  heading: string;
 }
 
 const RelatedProducts = ({
   products,
   currentProductId,
   gridClassName,
+  heading,
 }: Props) => {
   const { t } = useTranslation('common');
-
   return (
     <>
-      <h2 className="text-lg text-heading tracking-tight font-semibold mb-6">
-        {t('text-related-products')}
+      <h2 className="mb-6 text-lg font-semibold tracking-tight text-heading">
+        {heading}
       </h2>
       <div
         className={cn(
-          'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4',
+          'grid grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cols-4',
           gridClassName
         )}
       >
         {products?.map((item: any, idx: number) => {
-          if (currentProductId === item.id) {
-            return null;
-          }
+          // if (currentProductId === item.id) {
+          //   return null;
+          // }
           return (
             <ProductCard product={item} key={idx} cardType={item?.type?.slug} />
           );

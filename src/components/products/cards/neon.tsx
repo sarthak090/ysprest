@@ -45,9 +45,9 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
     // return openModal('PRODUCT_DETAILS', product.slug);
   }
   const src = image?.original ? image?.original : productPlaceholder.src;
-  if (product_type.toLowerCase() === 'variable') {
-    return <></>;
-  }
+  // if (product_type.toLowerCase() === 'variable') {
+  //   return <></>;
+  // }
   return (
     <Link href={`/products/${product.slug}`}>
       <article

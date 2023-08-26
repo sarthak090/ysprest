@@ -44,6 +44,10 @@ export const getStaticProps: GetStaticProps<
   );
 
   try {
+    const postUrl = NEXT_PUBLIC_WP_API + `/wpr/v1/posts`;
+    const productsUrl = NEXT_PUBLIC_WP_API + `/api/products`;
+    const posts = await fetch(postUrl).then((r) => r.json());
+    const related_products = await fetch(productsUrl).then((r) => r.json());
     const product = await client.products.get({ slug, language: locale });
     const rankMathUrl =
       NEXT_PUBLIC_WP_API +
@@ -53,7 +57,11 @@ export const getStaticProps: GetStaticProps<
     const seoData = await fetch(rankMathUrl).then((r) => r.json());
     return {
       props: {
-        product,
+        product: {
+          ...product,
+          related_products: related_products.data,
+        },
+        posts,
         seoData: {
           meta_tags: extractMetaTags(seoData.head),
           jsonLtdScheam: extractScriptTags(seoData.head),

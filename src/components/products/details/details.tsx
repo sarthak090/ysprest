@@ -30,6 +30,7 @@ import { useInWishlist, useToggleWishlist } from '@/framework/wishlist';
 import { useIntersection } from 'react-use';
 import { StarIcon } from '@/components/icons/star-icon';
 import Tabs from '@/components/ui/tab';
+import AllowedPincodes from '../allowed-pincodes';
 
 function FavoriteButton({
   productId,
@@ -276,7 +277,7 @@ const Details: React.FC<Props> = ({
                 )}
               </span>
             )}
-
+            <AllowedPincodes />
             <div className="mt-6 flex flex-col items-center md:mt-6 lg:flex-row">
               <div className="mb-3 w-full lg:mb-0 lg:max-w-[400px]">
                 <AddToCart

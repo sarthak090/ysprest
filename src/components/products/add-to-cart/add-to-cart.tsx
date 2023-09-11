@@ -45,6 +45,7 @@ export const AddToCart = ({
   } = useCart();
 
   const item = generateCartItem(data, variation);
+
   const handleAddClick = (
     e: React.MouseEvent<HTMLButtonElement | MouseEvent>
   ) => {
@@ -53,6 +54,10 @@ export const AddToCart = ({
     if (item?.language !== language) {
       updateCartLanguage(item?.language);
     }
+    if (item.price === 0 && data.product_type === 'variable') {
+      item.price = data.min_price;
+    }
+
     addItemToCart(item, 1);
     if (!isInCart(item.id)) {
       cartAnimation(e);

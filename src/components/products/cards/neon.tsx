@@ -117,27 +117,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           )}
           {/* End of product price */}
 
-          {product_type.toLowerCase() === 'variable' ? (
-            <>
-              {Number(in_stock) > 0 && (
-                <button
-                  // onClick={handleProductQuickView}
-                  className="group flex h-7 w-full items-center justify-between rounded bg-gray-100 text-xs text-body-dark transition-colors hover:border-accent hover:bg-accent hover:text-light focus:border-accent focus:bg-accent focus:text-light focus:outline-none md:h-9 md:text-sm"
-                >
-                  <span className="flex-1">Add</span>
-                  <span className="grid h-7 w-7 place-items-center bg-gray-200 transition-colors duration-200 group-hover:bg-accent-600 group-focus:bg-accent-600 ltr:rounded-tr ltr:rounded-br rtl:rounded-tl rtl:rounded-bl md:h-9 md:w-9">
-                    <PlusIcon className="h-4 w-4 stroke-2" />
-                  </span>
-                </button>
-              )}
-            </>
-          ) : (
-            <>
-              {Number(in_stock) > 0 && (
-                <AddToCart variant="neon" data={product} />
-              )}
-            </>
-          )}
+          {Number(in_stock) > 0 && <AddToCart variant="neon" data={product} />}
 
           {Number(in_stock) <= 0 && (
             <div className="rounded bg-red-500 px-2 py-1.5 text-center text-xs text-light sm:py-2.5">

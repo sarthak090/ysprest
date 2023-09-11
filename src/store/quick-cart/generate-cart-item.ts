@@ -36,19 +36,24 @@ export function generateCartItem(item: Item, variation: Variation) {
   } = item;
 
   if (!isEmpty(variation)) {
+    // @ts-ignore
+    const variationSingle = variation[0];
+
     return {
-      id: `${id}.${variation.id}`,
+      id: `${id}.${variationSingle.id}`,
       productId: id,
-      name: `${name} - ${variation.title}`,
+      name: `${name} - ${variationSingle.title}`,
       slug,
       unit,
-      is_digital: variation?.is_digital,
-      stock: variation.quantity,
+      is_digital: variationSingle?.is_digital,
+      stock: variationSingle.quantity,
       price: Number(
-        variation.sale_price ? variation.sale_price : variation.price
+        variationSingle.display_price
+          ? variationSingle.display_price
+          : variationSingle.display_price
       ),
       image: image?.thumbnail,
-      variationId: variation.id,
+      variationId: variationSingle.variation_id,
       language,
     };
   }

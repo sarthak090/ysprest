@@ -8,8 +8,8 @@ export default NextAuth({
   providers: [
     GoogleProvider({
       clientId:
-        '334029046406-ivq0adf1ipipgt22t1h06vh168923759.apps.googleusercontent.com',
-      clientSecret: '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',
+        '246994494222-vbbgamnh97fo8gq4h3usmdcdc7d58ht5.apps.googleusercontent.com',
+      clientSecret: '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',
     }),
   ],
 
